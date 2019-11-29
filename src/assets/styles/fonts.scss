@@ -1,0 +1,36 @@
+$font10px: 0.625rem;
+$font11px: 0.6875rem;
+$font12px: 0.75rem;
+$font13px: 0.8125rem;
+$font14px: 0.875rem;
+$font15px: 0.9375rem;
+$font16px: 1rem;
+$font20px: 1.25rem;
+$font24px: 1.5rem;
+
+@font-face {
+  font-family: lato-regular;
+  src: url("./assets/fonts/Lato/Lato-Regular.ttf");
+}  
+@font-face {
+  font-family: lato-bold;
+  src: url("./assets/fonts/Lato/Lato-Bold.ttf");
+} 
+
+@for $i from 10 through 16 {
+  $value: ($i + 1px) - 1px;
+  $remSize: $value / 16px;
+  .font-#{$i} {
+    font-size: #{$remSize}rem;
+  }
+}
+.font-20 {
+  font-size: $font20px;
+}
+.font-24 {
+  font-size: $font24px;
+}
+
+.font-10, .font-14 {
+  font-family: lato-bold;
+}

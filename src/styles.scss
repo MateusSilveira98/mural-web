@@ -1,0 +1,32 @@
+@import "~animate.css/animate.min.css";
+@import "./assets/styles/index.scss";
+
+
+* {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  text-decoration: none;
+  font-family: lato-regular;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+// MEDIA QUERY
+.is-desktop {
+  display: block;
+}
+.is-mobile {
+  display: none;
+}
+
+@media (max-width: 1024px) {
+  .is-desktop {
+    display: none;
+  }
+  .is-mobile {
+    display: block;
+  }
+}

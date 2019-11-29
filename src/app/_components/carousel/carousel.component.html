@@ -1,0 +1,61 @@
+<ng-container *ngIf="items && items.length > 0">
+
+  <div class="d-flex justify-content-center align-items-center">
+  
+    <i class="arrow left cursor-pointer" (click)="getPrev()"
+      [ngStyle]="{color: (page - 1) === 0 ? style ? style.primary.disabled : 'black' : style ? style.primary.main : 'black'}">
+    </i>
+    <div style="height: 250px;" *ngIf="isMobile">
+      <ngb-carousel [interval]="0" [showNavigationArrows]="false" [showNavigationIndicators]="false" #carousel>
+        <ng-template ngbSlide *ngFor="let item of items">
+          <div class="d-flex justify-content-center align-items-center">
+            <div class="card animations fadeInRight">
+              <img [src]="item.image" class="card-img-top" alt="Random first slide">
+              <div class="card-body" [ngStyle]="{backgroundColor: style ? style.elementsBackground : none}">
+                <h5 class="card-title font-20">{{item.title}}</h5>
+                <div class="card-text font-13" [ngStyle]="{color: style ? style.secondary.main : ''}">
+                  {{item.activitiesTotal}} Atividades colaborativas
+                </div>
+                <div class="card-text font-13" [ngStyle]="{color: style ? style.secondary.main : ''}">
+                  {{item.commentsTotal}} Comentários
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+      </ngb-carousel>
+    </div>
+  
+    <div style="height: 250px;" *ngIf="!isMobile">
+      <ngb-carousel [interval]="0" [showNavigationIndicators]="false" [showNavigationArrows]="false">
+        <ng-template ngbSlide *ngFor="let slide of slides; let i = index" [id]="i">
+          <div class="d-flex justify-content-center align-items-center">
+            <div class="card animations fadeInRight" *ngFor="let item of slide">
+              <img [src]="item.image" class="card-img-top" alt="Random first slide">
+              <div class="card-body" [ngStyle]="{backgroundColor: style ? style.elementsBackground : 'blue'}">
+                <h5 class="card-title font-20">{{item.title}}</h5>
+                <div class="card-text font-13" [ngStyle]="{color: style ? style.secondary.main : 'black'}">
+                  {{item.activitiesTotal}} Atividades colaborativas</div>
+                <div class="card-text font-13" [ngStyle]="{color: style ? style.secondary.main : 'black'}">
+                  {{item.commentsTotal}} Comentários</div>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+      </ngb-carousel>
+    </div>
+  
+    <i class="arrow right cursor-pointer" *ngIf="isMobile" (click)="moveNext()"
+      [ngStyle]="{color: page === items.length ? style ? style.primary.disabled : 'black' : style ? style.primary.main : 'black'}">
+    </i>
+    <i class="arrow right cursor-pointer" *ngIf="!isMobile" (click)="moveNext()"
+      [ngStyle]="{color: page === indicators.length ? style ? style.primary.disabled : 'black' : style ? style.primary.main : 'black'}">
+    </i>
+  
+  </div>
+  
+  <div class="indicators is-desktop">
+    <div class="indicator" [ngStyle]="(page - 1) === i ? style.primary.background : style.primary.outline"
+      *ngFor="let indicator of indicators; let i = index" (click)="goToSlide(i + 1)">&nbsp;</div>
+  </div>
+</ng-container>

@@ -1,0 +1,43 @@
+.indicators {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  .indicator {
+    cursor: pointer;
+    width: 15px;
+    height: 15px;
+    border: 1px solid;
+    border-radius: 10px;
+    margin-right: 1em;
+    margin-top: 1em;
+  }
+}
+.card {
+  margin: 0 0.5em;
+  border-radius: 0;
+  width: 15em;
+  .card-img-top {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
+}
+@media (max-width: 1024px) {
+  .arrow {
+    &::before {
+      height: 1em;
+      width: 1em;
+    }
+  }
+  .indicators {
+    display: none;
+  }
+}
+@media (max-width: 320px) {
+  .arrow {
+    &::before {
+      height: 0.75em;
+      width: 0.75em;
+    }
+  }
+}

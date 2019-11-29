@@ -1,0 +1,36 @@
+{
+  "bancodobrasil": {
+    "primary": {
+      "main": "#004387",
+      "disabled": "#00438799",
+      "hover": "#00356c",
+      "background": {
+        "backgroundColor": "#004387",
+        "color": "#FFFFFF"
+      },
+      "outline": {
+        "borderColor": "#004387",
+        "color": "#004387",
+        "backgroundColor": "#FFFFFF"
+      }
+    },
+    "secondary": {
+      "main": "#787878",
+      "disabled": "#78787899",
+      "hover": "#606060",
+      "background": {
+        "backgroundColor": "#004387",
+        "color": "#FFFFFF"
+      },
+      "outline": {
+        "borderColor": "#004387",
+        "color": "#004387",
+        "backgroundColor": "#FFFFFF"
+      }
+    },
+    "text": "#000000",
+    "elementsBackground": "#EEEEEE",
+    "details": "#C6D6E5",
+    "featured": "#FEF200"
+  }
+}

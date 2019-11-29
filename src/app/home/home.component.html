@@ -1,0 +1,18 @@
+<section class="home">
+  <div class="mb-4">
+    <h1 class="font-24" [ngStyle]="{color: styleConfig && styleConfig.primary && styleConfig.primary.main}">
+      Meus Conhecimentos
+    </h1>
+    <carousel [items]="knowledges" [isMobile]="isMobile" [itemsPerPage]="4" [totalItems]="totalKnowledges"
+      [page]="knowledgePage" [style]="styleConfig" (clickOnPrev)="getKnowledgesByPage($event)"
+      (clickOnNext)="getKnowledgesByPage($event)" (clickOnIndicator)="getKnowledgesByPage($event)">
+    </carousel>
+  </div>
+  <div class="mb-4">
+    <h1 class="font-24" [ngStyle]="{color: styleConfig && styleConfig.primary && styleConfig.primary.main}">Atividades
+      Colaborativas</h1>
+    <filtertable [style]="styleConfig" [isMobile]="isMobile" [config]="activityConfig" (onChangePage)="getActivityByPage($event, totalActivitiesPerPage)"
+      (onChangeItemsPerPage)="totalActivitiesPerPage = $event; getActivityByPage(activityPage, totalActivitiesPerPage)" (onClickAction)="onClickAction($event)">
+    </filtertable>
+  </div>
+</section>
