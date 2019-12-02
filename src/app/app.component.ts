@@ -1,5 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import * as themes from '../themes.json';
+import { Component, OnInit } from '@angular/core';
 // import { Apollo } from 'apollo-angular';
 // import { map } from 'rxjs/operators';
 // import { Observable } from 'rxjs';
@@ -10,9 +9,7 @@ import * as themes from '../themes.json';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  encapsulation: ViewEncapsulation.None,
-  styles: [`.table-button {background-color: ${themes.bancodobrasil.primary.background.backgroundColor}; color: ${themes.bancodobrasil.primary.background.color}!important}`]
+  templateUrl: './app.component.html'
 })
 export class AppComponent {
   // courses: Observable<Course[]>;

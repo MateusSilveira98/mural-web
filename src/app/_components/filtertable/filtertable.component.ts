@@ -11,7 +11,9 @@ export class FiltertableComponent implements OnInit {
   @Input() isMobile: boolean = false;
   @Output() onChangePage = new EventEmitter();
   @Output() onChangeItemsPerPage = new EventEmitter();
-  @Output() onClickAction = new EventEmitter();
+  @Output() onClickHTMLPropTable = new EventEmitter();
+  @Output() onClickComponentPropTable = new EventEmitter();
+  @Output() onClickLinkPropTable = new EventEmitter();
   constructor() { }
 
   ngOnInit() {
@@ -19,7 +21,6 @@ export class FiltertableComponent implements OnInit {
   ngOnChanges(changes: SimpleChanges) {
     const config: SimpleChange = changes.config;
     this.config = config.currentValue;
-    console.log(this.config)
   }
   changePage(page) {
     this.onChangePage.emit(page);
@@ -27,24 +28,54 @@ export class FiltertableComponent implements OnInit {
 }
 
 export class FilterTableConfig {
-  constructor() { }
   columns: string[] = [];
   props: Props[] = [];
   items: any[] = [];
   itemsPerPage: number = 10;
-  itemsPerPageList: number[];
+  itemsPerPageList: number[] = [5, 10, 20];
   page: number = 1;
   totalItems: number = 0;
   boolValuePropTrue: string = 'sim';
   boolValuePropFalse: string = 'não';
   emptyMessage: string = '';
+  constructor(
+    columns: string[] = null,
+    props: Props[] = null,
+    items: any[] = null,
+    itemsPerPage: number = null,
+    itemsPerPageList: number[] = [5, 10, 20],
+    page: number = 1,
+    totalItems: number = 0,
+    boolValuePropTrue: string = 'sim',
+    boolValuePropFalse: string = 'não',
+    emptyMessage: string = 'Nenhum Registro'
+  ) {
+    this.columns = columns;
+    this.props = props;
+    this.items = items;
+    this.itemsPerPage = itemsPerPage;
+    this.itemsPerPageList = itemsPerPageList;
+    this.page = page;
+    this.totalItems = totalItems;
+    this.boolValuePropTrue = boolValuePropTrue;
+    this.boolValuePropFalse = boolValuePropFalse;
+    this.emptyMessage = emptyMessage;
+  }
 }
-class Props {
+export class Props {
   id: number = 0;
   name: string = '';
   type: string = '';
   attribute: string = '';
-  html: string = '';
+  label: string = '';
   bold: boolean = false;
+  constructor(id: number = null, name: string = null, type: string = null, attribute: string = null, label: string = null, bold: boolean = false) {
+    this.id = id;
+    this.name = name;
+    this.type = type;
+    this.attribute = attribute;
+    this.bold = bold;
+    this.label = label;
+  }
 }
 

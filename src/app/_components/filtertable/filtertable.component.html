@@ -2,13 +2,15 @@
   <thead>
     <tr>
       <ng-container *ngFor="let column of config.columns">
-        <th scope="col" [ngStyle]="{color: style.primary.main || 'black', borderColor: style.details}" class="font-12">{{column}}</th>
+        <th scope="col" [ngStyle]="{color: style.primary.main || 'black', borderColor: style.details}" class="font-12">
+          {{column}}</th>
       </ng-container>
     </tr>
   </thead>
   <tbody *ngIf="config.items.length != 0">
     <tr scope="row" *ngFor="let item of config.items">
-      <td *ngFor="let prop of config.props" class="font-weight-bold animations fadeInDown" [ngStyle]="{backgroundColor: style.elementsBackground, color: prop.bold ? style.text : style.secondary.main}">
+      <td *ngFor="let prop of config.props" class="font-weight-bold animations fadeInDown"
+        [ngStyle]="{backgroundColor: style.elementsBackground, color: prop.bold ? style.text : style.secondary.main}">
         <span *ngIf="prop.type == 'string'">{{item[prop.name]}}</span>
         <span
           *ngIf="prop.type == 'boolean'">{{item[prop.name] ? config.boolValuePropTrue : config.boolValuePropFalse}}</span>
@@ -19,11 +21,16 @@
             <span>{{item[prop.name]}}</span>
           </div>
         </span>
-        <span *ngIf="prop.type == 'action'" (click)="onClickAction.emit(item)">
+        <span *ngIf="prop.type == 'link'">
+          <a class='btn cursor-pointer' [ngStyle]="style.primary.background" (click)="onClickLinkPropTable.emit(item)">
+            {{prop.label}}
+          </a>
+        </span>
+        <span *ngIf="prop.type == 'html'" (click)="onClickHTMLPropTable.emit(item)">
           <div [innerHtml]="prop.html"></div>
         </span>
-        <span *ngIf="prop.type == 'component'" (click)="clickOnComponentTable.emit(item)">
-          <ng-content></ng-content> 
+        <span *ngIf="prop.type == 'component'" (click)="onClickComponentPropTable.emit(item)">
+          <ng-content></ng-content>
         </span>
       </td>
     </tr>
@@ -37,10 +44,10 @@
   <tfoot>
     <tr>
       <td [attr.colspan]="config.props.length + 1">
-        <div class="d-flex justify-content-end align-items-center">
+        <div class="d-flex align-items-end justify-content-center">
           <ng-container *ngIf="config.totalItems > config.itemsPerPage">
             <ngb-pagination [(page)]="config.page" [pageSize]="config.itemsPerPage" [collectionSize]="config.totalItems"
-              (pageChange)="changePage($event)">
+              (pageChange)="changePage($event)" style="width: 71%;">
               <ng-template ngbPaginationPrevious>
                 <i class="fa fa-chevron-left"></i>
               </ng-template>
@@ -52,9 +59,10 @@
               </ng-template>
             </ngb-pagination>
           </ng-container>
-          <div class="d-flex width-40 justify-content-end align-items-start font-12" [ngStyle]="{color: style.secondary.main}">
+          <div class="font-12 width-50" [ngClass]="config.totalItems > config.itemsPerPage ? 'text-right' : 'text-center'" [ngStyle]="{color: style.secondary.main}">
             <label class='mr-1'>EXIBIR</label>
-            <select class="mr-1" (change)='onChangeItemsPerPage.emit($event.target.value);' [ngStyle]="{color: style.secondary.main}">
+            <select class="mr-1" (change)='onChangeItemsPerPage.emit($event.target.value);'
+              [ngStyle]="{color: style.secondary.main}">
               <option *ngFor="let option of config.itemsPerPageList" [value]="option">{{option}}</option>
             </select>
             <label>ITENS</label>
