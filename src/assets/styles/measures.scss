@@ -1,40 +1,40 @@
 @for $i from 0 through 100 {
-    $value: ($i + 1%) - 1%;
-    $emValue: ($i + 1em) - 1em;
-    .width-#{$i} {
-      width: $value;
-    }
-    .height-#{$i} {
-      height: $value;
-    }
-    .margin-#{i} {
-      margin: $emValue;
-    }
-    .margin-right-#{i} {
-      margin-right: $emValue;
-    }
-    .margin-left-#{i} {
-      margin-left: $emValue;
-    }
-    .margin-top-#{i} {
-      margin-top: $emValue;
-    }
-    .margin-bottom-#{i} {
-      margin-bottom: $emValue;
-    }
-    .padding-#{i} {
-      padding: $emValue;
-    }
-    .padding-right-#{i} {
-      padding-right: $emValue;
-    }
-    .padding-left-#{i} {
-      padding-left: $emValue;
-    }
-    .padding-top-#{i} {
-      padding-top: $emValue;
-    }
-    .padding-bottom-#{i} {
-      padding-bottom: $emValue;
-    }
+  $value: ($i + 1%) - 1%;
+  $emValue: ($i + 1em) - 1em;
+  .width-#{$i} {
+    width: $value;
   }
+  .height-#{$i} {
+    height: $value;
+  }
+  .margin-#{i} {
+    margin: $emValue;
+  }
+  .margin-right-#{i} {
+    margin-right: $emValue;
+  }
+  .margin-left-#{i} {
+    margin-left: $emValue;
+  }
+  .margin-top-#{i} {
+    margin-top: $emValue;
+  }
+  .margin-bottom-#{i} {
+    margin-bottom: $emValue;
+  }
+  .padding-#{i} {
+    padding: $emValue;
+  }
+  .padding-right-#{i} {
+    padding-right: $emValue;
+  }
+  .padding-left-#{i} {
+    padding-left: $emValue;
+  }
+  .padding-top-#{i} {
+    padding-top: $emValue;
+  }
+  .padding-bottom-#{i} {
+    padding-bottom: $emValue;
+  }
+}

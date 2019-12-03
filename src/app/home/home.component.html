@@ -11,18 +11,21 @@
   <div class="mb-4">
     <h1 class="font-24" [ngStyle]="{color: styleConfig && styleConfig.primary && styleConfig.primary.main}">Atividades
       Colaborativas</h1>
-    <filtertable [style]="styleConfig" [isMobile]="isMobile" [config]="activityConfig"
+    <filtertable [isFilter]='true' [filters]="activityFilters" [style]="styleConfig" [isMobile]="isMobile" [config]="activityConfig"
       (onChangePage)="getActivityByPage($event, totalActivitiesPerPage)"
       (onChangeItemsPerPage)="totalActivitiesPerPage = $event; getActivityByPage(activityPage, totalActivitiesPerPage)"
       (onClickLinkPropTable)="onClickLink($event)">
     </filtertable>
   </div>
   <div class="mb-4">
-    <h1 class="font-24" [ngStyle]="{color: styleConfig && styleConfig.primary && styleConfig.primary.main}">Comentários</h1>
+    <h1 class="font-24" [ngStyle]="{color: styleConfig && styleConfig.primary && styleConfig.primary.main}">Comentários
+    </h1>
     <filtertable [style]="styleConfig" [isMobile]="isMobile" [config]="commentsConfig"
       (onChangePage)="getCommentsByPage($event, totalCommentsPerPage)"
       (onChangeItemsPerPage)="totalCommentsPerPage = $event; getCommentsByPage(commentsPage, totalCommentsPerPage)"
       (onClickLinkPropTable)="onClickLink($event)">
+      <div class="d-flex justify-content-center align-items-center">
+      </div>
     </filtertable>
   </div>
 </section>

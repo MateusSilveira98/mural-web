@@ -7,12 +7,14 @@ import { Component, OnInit, Input, SimpleChange, SimpleChanges, EventEmitter, Ou
 })
 export class FiltertableComponent implements OnInit {
   @Input() config: FilterTableConfig = new FilterTableConfig();
+  @Input() isFilter: boolean = false;
+  @Input() filters: FilterConfigProps[] = [];
   @Input() style: Object;
   @Input() isMobile: boolean = false;
   @Output() onChangePage = new EventEmitter();
   @Output() onChangeItemsPerPage = new EventEmitter();
   @Output() onClickHTMLPropTable = new EventEmitter();
-  @Output() onClickComponentPropTable = new EventEmitter();
+  @Output() onClickRatingPropTable = new EventEmitter();
   @Output() onClickLinkPropTable = new EventEmitter();
   constructor() { }
 
@@ -79,3 +81,40 @@ export class Props {
   }
 }
 
+export class FilterConfigProps {
+  id: number;
+  value: any;
+  label: string;
+  type: string;
+  placeholder: string;
+  options: FilterOptions[];
+  constructor(
+    id: number = null,
+    type: string = null,
+    placeholder: string = null,
+    label: string = null,
+    value: any = null,
+    options: FilterOptions[] = null,
+  ) {
+    this.id = id;
+    this.value = value;
+    this.label = label;
+    this.type = type;
+    this.placeholder = placeholder;
+    this.options = options;
+  }
+}
+export class FilterOptions {
+  id: number;
+  valueLabel: string;
+  value: any;
+  constructor(
+    id: number = null,
+    valueLabel: string = null,
+    value: any = null
+  ) {
+    this.id = id;
+    this.valueLabel = valueLabel;
+    this.value = value;
+  }
+}

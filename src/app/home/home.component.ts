@@ -2,7 +2,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import * as themes from '../../themes.json';
 import moment from 'moment';
 import _ from 'lodash';
-import { FilterTableConfig, Props } from '../_components/filtertable/filtertable.component.js';
+import { FilterTableConfig, Props, FilterConfigProps, FilterOptions } from '../_components/filtertable/filtertable.component.js';
 import { Activity } from '../_models/activity.model.js';
 import { Comments } from '../_models/comments.model.js';
 const tableStyle = {
@@ -80,8 +80,8 @@ export class HomeComponent implements OnInit {
       ++this.mockId,
       'Isabel Cristina Leopoldina Augusta Micaela Gabriela Rafaela Gonzaga de Bourbon e Bragança',
       `https://picsum.photos/id/${++this.mockId}/900/500`,
-      'Gestão Empresarial',
       'Missão Saiba Mais Game DesEnvolVer Transformação Digital',
+      'Gestão Empresarial',
       this.randomDate(new Date(2013, 0, 1), new Date()),
       Math.floor(Math.random() * 5)
     ),
@@ -89,8 +89,8 @@ export class HomeComponent implements OnInit {
       ++this.mockId,
       'Pedro de Alcântara João Carlos Leopoldo Salvador',
       `https://picsum.photos/id/${++this.mockId}/900/500`,
-      'Gestão T.I',
       'Missão Saiba Mais Game DesEnvolVer Transformação Digital',
+      'Gestão T.I',
       this.randomDate(new Date(2013, 0, 1), new Date()),
       Math.floor(Math.random() * 5)
     ),
@@ -116,10 +116,48 @@ export class HomeComponent implements OnInit {
       ++this.mockId,
       'Maria Antónia Gabriela de Koháry de Čabraď e Szitnya',
       `https://picsum.photos/id/${++this.mockId}/900/500`,
-      'Gestão de T.I',
       'Missão Saiba Mais Game DesEnvolVer Transformação Digital',
+      'Gestão de T.I',
       this.randomDate(new Date(2013, 0, 1), new Date()),
       Math.floor(Math.random() * 5)
+    )
+  ];
+  activityFilters: FilterConfigProps[] = [
+    new FilterConfigProps(
+      ++this.mockId,
+      'input',
+      'Buscar por: título'
+    ),
+    new FilterConfigProps(
+      ++this.mockId,
+      'select',
+      'Conhecimento',
+      null,
+      null,
+      [
+        new FilterOptions(this.mockId++, 'Gestão de Pessoas', 'Gestão de Pessoas'),
+        new FilterOptions(this.mockId++, 'Gestão de T.I', 'Gestão de T.I'),
+        new FilterOptions(this.mockId++, 'Gestão Empresarial', 'Gestão Empresarial')
+      ]
+    ),
+    new FilterConfigProps(
+      ++this.mockId,
+      'select',
+      'Ordenar por',
+      null,
+      null,
+      [
+        new FilterOptions(this.mockId++, 'Conhecimento', 'knowledge'),
+        new FilterOptions(this.mockId++, 'Mais Comentários', 'comments'),
+        new FilterOptions(this.mockId++, 'Mais Likes', 'likes')
+      ]
+    ),
+    new FilterConfigProps(
+      ++this.mockId,
+      'checkbox',
+      null,
+      'Todas que comentei',
+      false
     )
   ];
   activityPage: number = 1;
@@ -182,10 +220,11 @@ export class HomeComponent implements OnInit {
   getCommentsByPage(page, itemsPerPage) {
     this.commentsConfig.columns = ['Enviado por', 'título', 'conhecimento', 'comentado', 'relevância', ''];
     this.commentsConfig.props = [
-      new Props(this.mockId++, 'image', 'string', '', '', true),
+      new Props(this.mockId++, 'sentBy', 'image', '', '', true),
       new Props(this.mockId++, 'title', 'string', '', '', false),
+      new Props(this.mockId++, 'knowledge', 'string', '', '', false),
       new Props(this.mockId++, 'createdAt', 'string', '', '', false),
-      new Props(this.mockId++, 'relevance', 'component', '', '', false),
+      new Props(this.mockId++, 'relevance', 'rating', '', '', false),
       new Props(this.mockId++, '', 'link', '', 'acessar', false)
     ];
     for (let index = this.comments.length - 1; index >= 0; index--) {

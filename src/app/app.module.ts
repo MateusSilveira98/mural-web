@@ -11,6 +11,7 @@ import { ComponentsModule } from './_components/components.module';
 import { registerLocaleData } from '@angular/common';
 import localePtBr from '@angular/common/locales/pt';
 registerLocaleData(localePtBr, 'pt')
+import 'moment/locale/pt-br';
 
 import { HomeComponent } from './home/home.component';
 

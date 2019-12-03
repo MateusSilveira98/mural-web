@@ -18,6 +18,10 @@
       border-bottom-right-radius: 4px;
     }
   }
+  .foot {
+    border-top: 1px solid;
+    padding-top: 1em;
+  }
 }
 ::ng-deep .pagination {
   margin: 0;
@@ -61,5 +65,11 @@
       padding: 0;
       padding-right: 0.5em;
     }
+  }
+}
+.image {
+  margin-right: 0.5em;
+  img {
+    width: 150px;
   }
 }
