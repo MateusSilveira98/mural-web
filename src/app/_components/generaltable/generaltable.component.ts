@@ -1,14 +1,12 @@
 import { Component, OnInit, Input, SimpleChange, SimpleChanges, EventEmitter, Output } from '@angular/core';
 
 @Component({
-  selector: 'filtertable',
-  templateUrl: './filtertable.component.html',
-  styleUrls: ['./filtertable.component.scss']
+  selector: 'generaltable',
+  templateUrl: './generaltable.component.html',
+  styleUrls: ['./generaltable.component.scss']
 })
-export class FiltertableComponent implements OnInit {
-  @Input() config: FilterTableConfig = new FilterTableConfig();
-  @Input() isFilter: boolean = false;
-  @Input() filters: FilterConfigProps[] = [];
+export class GeneralTableComponent implements OnInit {
+  @Input() config: GeneralTableConfig = new GeneralTableConfig();
   @Input() style: Object;
   @Input() isMobile: boolean = false;
   @Output() onChangePage = new EventEmitter();
@@ -29,9 +27,9 @@ export class FiltertableComponent implements OnInit {
   }
 }
 
-export class FilterTableConfig {
+export class GeneralTableConfig {
   columns: string[] = [];
-  props: Props[] = [];
+  props: GeneralTableProps[] = [];
   items: any[] = [];
   itemsPerPage: number = 10;
   itemsPerPageList: number[] = [5, 10, 20];
@@ -42,7 +40,7 @@ export class FilterTableConfig {
   emptyMessage: string = '';
   constructor(
     columns: string[] = null,
-    props: Props[] = null,
+    props: GeneralTableProps[] = null,
     items: any[] = null,
     itemsPerPage: number = null,
     itemsPerPageList: number[] = [5, 10, 20],
@@ -64,7 +62,7 @@ export class FilterTableConfig {
     this.emptyMessage = emptyMessage;
   }
 }
-export class Props {
+export class GeneralTableProps {
   id: number = 0;
   name: string = '';
   type: string = '';
@@ -78,43 +76,5 @@ export class Props {
     this.attribute = attribute;
     this.bold = bold;
     this.label = label;
-  }
-}
-
-export class FilterConfigProps {
-  id: number;
-  value: any;
-  label: string;
-  type: string;
-  placeholder: string;
-  options: FilterOptions[];
-  constructor(
-    id: number = null,
-    type: string = null,
-    placeholder: string = null,
-    label: string = null,
-    value: any = null,
-    options: FilterOptions[] = null,
-  ) {
-    this.id = id;
-    this.value = value;
-    this.label = label;
-    this.type = type;
-    this.placeholder = placeholder;
-    this.options = options;
-  }
-}
-export class FilterOptions {
-  id: number;
-  valueLabel: string;
-  value: any;
-  constructor(
-    id: number = null,
-    valueLabel: string = null,
-    value: any = null
-  ) {
-    this.id = id;
-    this.valueLabel = valueLabel;
-    this.value = value;
   }
 }

@@ -1,4 +1,4 @@
-@for $i from 0 through 100 {
+@for $i from 1 through 100 {
   $value: ($i + 1%) - 1%;
   $emValue: ($i + 1em) - 1em;
   .width-#{$i} {
@@ -37,4 +37,8 @@
   .padding-bottom-#{i} {
     padding-bottom: $emValue;
   }
+}
+
+.btn {
+  padding: 0em 1em 0.1em;
 }

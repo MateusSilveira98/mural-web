@@ -1,21 +1,3 @@
-<div class="filter" *ngIf="isFilter">
-  <div class="fields">
-    <ng-container *ngFor="let filter of filters">
-      <div class="field" *ngIf="filter.type == 'input'">
-        <input type="text" (change)="filterTable(filter, 'input')" [(ngModel)]="filter.value" [placeholder]="filter.placeholder" />
-      </div>
-      <div class="field" *ngIf="filter.type == 'select'">
-        <select (change)="filterTable(filter, 'select')" [(ngModel)]="filter.value" >
-          <option [value]="option.value" *ngFor="let option of filter.options">{{option.valueLabel}}</option>
-        </select>
-      </div>
-      <div class="field" *ngIf="filter.type == 'checkbox'">
-        <label [for]="filter.id">{{filter.label}}</label>
-        <input type="checkbox" [(ngModel)]="filter.value" (change)="filterTable(filter, 'checkbox')" [id]="filter.id"/>
-      </div>
-    </ng-container>
-  </div>
-</div>
 <table class="desktop-filtertable width-100">
   <thead>
     <tr>

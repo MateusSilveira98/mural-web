@@ -5,13 +5,15 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
-import { FiltertableComponent } from './filtertable/filtertable.component';
+import { GeneralTableComponent } from './generaltable/generaltable.component';
 import { CarouselComponent } from './carousel/carousel.component';
+import { FilterComponent } from './filter/filter.component';
 
 @NgModule({
   declarations: [
-    FiltertableComponent,
-    CarouselComponent
+    GeneralTableComponent,
+    CarouselComponent,
+    FilterComponent
   ],
   imports: [
     BrowserModule,
@@ -22,8 +24,9 @@ import { CarouselComponent } from './carousel/carousel.component';
     ReactiveFormsModule
   ],
   exports: [
-    FiltertableComponent,
-    CarouselComponent
+    GeneralTableComponent,
+    CarouselComponent,
+    FilterComponent
   ],
   providers: []
 })

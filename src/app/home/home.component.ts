@@ -2,25 +2,26 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import * as themes from '../../themes.json';
 import moment from 'moment';
 import _ from 'lodash';
-import { FilterTableConfig, Props, FilterConfigProps, FilterOptions } from '../_components/filtertable/filtertable.component.js';
 import { Activity } from '../_models/activity.model.js';
 import { Comments } from '../_models/comments.model.js';
-const tableStyle = {
-  pagination: `
-    ::ng-deep .pagination .page-item.active .page-link {
-      color: ${themes.bancodobrasil.primary.main}!important;
-    }
-    ::ng-deep .pagination .page-item.disabled .page-link {
-      color: ${themes.bancodobrasil.secondary.main}!important;
-    }
-    ::ng-deep .pagination .page-item:last-child .page-link, ::ng-deep .pagination .page-item:first-child .page-link {
-      color: ${themes.bancodobrasil.primary.main}!important;
-    }
-    ::ng-deep .pagination .page-link {
-      color: ${themes.bancodobrasil.secondary.main}!important;
-    }
-  `
-}
+import { FilterConfig, FilterOptions } from '../_components/filter/filter.component.js';
+import { GeneralTableConfig, GeneralTableProps } from '../_components/generaltable/generaltable.component.js';
+// const tableStyle = {
+//   pagination: `
+//     ::ng-deep .pagination .page-item.active .page-link {
+//       color: ${themes.bancodobrasil.primary.main}!important;
+//     }
+//     ::ng-deep .pagination .page-item.disabled .page-link {
+//       color: ${themes.bancodobrasil.secondary.main}!important;
+//     }
+//     ::ng-deep .pagination .page-item:last-child .page-link, ::ng-deep .pagination .page-item:first-child .page-link {
+//       color: ${themes.bancodobrasil.primary.main}!important;
+//     }
+//     ::ng-deep .pagination .page-link {
+//       color: ${themes.bancodobrasil.secondary.main}!important;
+//     }
+//   `
+// }
 @Component({
   selector: 'home',
   templateUrl: './home.component.html',
@@ -35,8 +36,8 @@ export class HomeComponent implements OnInit {
   knowledges: any[] = [];
   knowledgePage: number = 1;
 
-  activityConfig: FilterTableConfig = new FilterTableConfig();
-  commentsConfig: FilterTableConfig = new FilterTableConfig();
+  activityConfig: GeneralTableConfig = new GeneralTableConfig();
+  commentsConfig: GeneralTableConfig = new GeneralTableConfig();
   mockId: number = 1;
   activities: Activity[] = [
     new Activity(
@@ -75,6 +76,7 @@ export class HomeComponent implements OnInit {
       Math.floor(Math.random() * 9999)
     )
   ];
+
   comments: Comments[] = [
     new Comments(
       ++this.mockId,
@@ -122,16 +124,19 @@ export class HomeComponent implements OnInit {
       Math.floor(Math.random() * 5)
     )
   ];
-  activityFilters: FilterConfigProps[] = [
-    new FilterConfigProps(
+
+  activityFilters: FilterConfig[] = [
+    new FilterConfig(
       ++this.mockId,
       'input',
-      'Buscar por: título'
+      'Buscar por: título',
+      'title'
     ),
-    new FilterConfigProps(
+    new FilterConfig(
       ++this.mockId,
       'select',
       'Conhecimento',
+      'knowledge',
       null,
       null,
       [
@@ -140,10 +145,11 @@ export class HomeComponent implements OnInit {
         new FilterOptions(this.mockId++, 'Gestão Empresarial', 'Gestão Empresarial')
       ]
     ),
-    new FilterConfigProps(
+    new FilterConfig(
       ++this.mockId,
-      'select',
+      'orderBy',
       'Ordenar por',
+      null,
       null,
       null,
       [
@@ -152,14 +158,44 @@ export class HomeComponent implements OnInit {
         new FilterOptions(this.mockId++, 'Mais Likes', 'likes')
       ]
     ),
-    new FilterConfigProps(
+    new FilterConfig(
       ++this.mockId,
       'checkbox',
+      null,
       null,
       'Todas que comentei',
       false
     )
   ];
+  commentsFilters: FilterConfig[] = [
+    new FilterConfig(
+      ++this.mockId,
+      'select',
+      'Conhecimento',
+      'knowledge',
+      null,
+      null,
+      [
+        new FilterOptions(this.mockId++, 'Gestão de Pessoas', 'Gestão de Pessoas'),
+        new FilterOptions(this.mockId++, 'Gestão de T.I', 'Gestão de T.I'),
+        new FilterOptions(this.mockId++, 'Gestão Empresarial', 'Gestão Empresarial')
+      ]
+    ),
+    new FilterConfig(
+      ++this.mockId,
+      'orderBy',
+      'Ordenar por',
+      null,
+      null,
+      null,
+      [
+        new FilterOptions(this.mockId++, 'Conhecimento', 'knowledge'),
+        new FilterOptions(this.mockId++, 'Título', 'title'),
+        new FilterOptions(this.mockId++, 'Mais Relevante', 'relevance')
+      ]
+    )
+  ];
+
   activityPage: number = 1;
   totalActivitiesPerPage: number = 2;
   commentsPage: number = 1;
@@ -176,7 +212,7 @@ export class HomeComponent implements OnInit {
     this.getKnowledgesByPage(this.knowledgePage);
     this.getCommentsByPage(this.commentsPage, this.totalCommentsPerPage);
     this.getActivityByPage(this.activityPage, this.totalActivitiesPerPage);
-    this.isMobile = window.screen.width <= 1024;
+    this.isMobile = window.screen.width <= 800;
   }
   getKnowledgesByPage(page) {
     this.knowledgePage = page;
@@ -205,11 +241,11 @@ export class HomeComponent implements OnInit {
   getActivityByPage(page, itemsPerPage) {
     this.activityConfig.columns = ['título', 'conhecimento', 'comentários', 'curtidas', ''];
     this.activityConfig.props = [
-      new Props(this.mockId++, 'title', 'string', '', '', true),
-      new Props(this.mockId++, 'knowledge', 'string', '', '', false),
-      new Props(this.mockId++, 'comments', 'string', '', '', false),
-      new Props(this.mockId++, 'likes', 'string', '', '', false),
-      new Props(this.mockId++, '', 'link', '', 'acessar', false)
+      new GeneralTableProps(this.mockId++, 'title', 'string', '', '', true),
+      new GeneralTableProps(this.mockId++, 'knowledge', 'string', '', '', false),
+      new GeneralTableProps(this.mockId++, 'comments', 'string', '', '', false),
+      new GeneralTableProps(this.mockId++, 'likes', 'string', '', '', false),
+      new GeneralTableProps(this.mockId++, '', 'link', '', 'acessar', false)
     ];
     this.activityConfig.itemsPerPage = itemsPerPage;
     this.activityConfig.totalItems = this.activities.length;
@@ -217,15 +253,18 @@ export class HomeComponent implements OnInit {
     this.activityConfig.page = page;
     this.activityConfig.itemsPerPageList = [2, 4, 6];
   }
+  filter(filter) {
+    console.log(filter);
+  }
   getCommentsByPage(page, itemsPerPage) {
     this.commentsConfig.columns = ['Enviado por', 'título', 'conhecimento', 'comentado', 'relevância', ''];
     this.commentsConfig.props = [
-      new Props(this.mockId++, 'sentBy', 'image', '', '', true),
-      new Props(this.mockId++, 'title', 'string', '', '', false),
-      new Props(this.mockId++, 'knowledge', 'string', '', '', false),
-      new Props(this.mockId++, 'createdAt', 'string', '', '', false),
-      new Props(this.mockId++, 'relevance', 'rating', '', '', false),
-      new Props(this.mockId++, '', 'link', '', 'acessar', false)
+      new GeneralTableProps(this.mockId++, 'sentBy', 'image', '', '', true),
+      new GeneralTableProps(this.mockId++, 'title', 'string', '', '', false),
+      new GeneralTableProps(this.mockId++, 'knowledge', 'string', '', '', false),
+      new GeneralTableProps(this.mockId++, 'createdAt', 'string', '', '', false),
+      new GeneralTableProps(this.mockId++, 'relevance', 'rating', '', '', false),
+      new GeneralTableProps(this.mockId++, '', 'link', '', 'acessar', false)
     ];
     for (let index = this.comments.length - 1; index >= 0; index--) {
       let element = this.comments[index];

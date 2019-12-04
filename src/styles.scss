@@ -1,5 +1,5 @@
+// @import "~animate.css/animate.min.css";
 @import "./assets/bootstrap/css/bootstrap.min.css";
-@import "~animate.css/animate.min.css";
 @import "./assets/styles/index.scss";
 
 
@@ -23,7 +23,7 @@
   display: none;
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 800px) {
   .is-desktop {
     display: none;
   }
