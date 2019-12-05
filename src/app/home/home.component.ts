@@ -6,6 +6,7 @@ import { Activity } from '../_models/activity.model.js';
 import { Comments } from '../_models/comments.model.js';
 import { FilterConfig, FilterOptions } from '../_components/filter/filter.component.js';
 import { GeneralTableConfig, GeneralTableProps } from '../_components/generaltable/generaltable.component.js';
+import { Router } from '@angular/router';
 // const tableStyle = {
 //   pagination: `
 //     ::ng-deep .pagination .page-item.active .page-link {
@@ -45,38 +46,42 @@ export class HomeComponent implements OnInit {
       'Desafio 3.2 - Momento Oráculo - Transformação Digital e as Relações com o Cliente Externo',
       'Gestão Empresarial',
       Math.floor(Math.random() * 9999),
-      Math.floor(Math.random() * 9999)
+      Math.floor(Math.random() * 9999),
+      'Este é o primeiro momento de atuação do oráculo. Aqui, vocês deverão discutir sobre os principais pontos das videoaulas que fazem parte do desafio 1.1 e elencar de que forma eles podem se materializar na prática, considerando a mentalidade estratégica e o foco no cliente. O texto que será postado nessa atividade colaborativa deve ser fruto da conversa entre gamer e oráculo. A primeira postagem relevante (com mais de 140 caracteres) conta pontos para o gamer. Participem!'
     ),
     new Activity(
       ++this.mockId,
       'Desafio 3.1 - Momento Oráculo - Transformação Digital e as Relações com o Cliente Interno',
       'Gestão Empresarial',
       Math.floor(Math.random() * 9999),
-      Math.floor(Math.random() * 9999)
+      Math.floor(Math.random() * 9999),
+      'Este é o primeiro momento de atuação do oráculo. Aqui, vocês deverão discutir sobre os principais pontos das videoaulas que fazem parte do desafio 1.1 e elencar de que forma eles podem se materializar na prática, considerando a mentalidade estratégica e o foco no cliente. O texto que será postado nessa atividade colaborativa deve ser fruto da conversa entre gamer e oráculo. A primeira postagem relevante (com mais de 140 caracteres) conta pontos para o gamer. Participem!'
     ),
     new Activity(
       ++this.mockId,
       'Desafio 3.4 - Youtubers BB - Atendimento Digital e as Relações com o Cliente Externo',
       'Gestão de Pessoas',
       Math.floor(Math.random() * 9999),
-      Math.floor(Math.random() * 9999)
+      Math.floor(Math.random() * 9999),
+      'Este é o primeiro momento de atuação do oráculo. Aqui, vocês deverão discutir sobre os principais pontos das videoaulas que fazem parte do desafio 1.1 e elencar de que forma eles podem se materializar na prática, considerando a mentalidade estratégica e o foco no cliente. O texto que será postado nessa atividade colaborativa deve ser fruto da conversa entre gamer e oráculo. A primeira postagem relevante (com mais de 140 caracteres) conta pontos para o gamer. Participem!'
     ),
     new Activity(
       ++this.mockId,
       'Desafio 2.2: Atividade colaborativa Transformação Digital e o BB',
       'Gestão de Pessoas',
       Math.floor(Math.random() * 9999),
-      Math.floor(Math.random() * 9999)
+      Math.floor(Math.random() * 9999),
+      'Este é o primeiro momento de atuação do oráculo. Aqui, vocês deverão discutir sobre os principais pontos das videoaulas que fazem parte do desafio 1.1 e elencar de que forma eles podem se materializar na prática, considerando a mentalidade estratégica e o foco no cliente. O texto que será postado nessa atividade colaborativa deve ser fruto da conversa entre gamer e oráculo. A primeira postagem relevante (com mais de 140 caracteres) conta pontos para o gamer. Participem!'
     ),
     new Activity(
       ++this.mockId,
       'Desafio 1.2 Momento Oráculo - Cursos',
       'Gestão de T.I',
       Math.floor(Math.random() * 9999),
-      Math.floor(Math.random() * 9999)
+      Math.floor(Math.random() * 9999),
+      'Este é o primeiro momento de atuação do oráculo. Aqui, vocês deverão discutir sobre os principais pontos das videoaulas que fazem parte do desafio 1.1 e elencar de que forma eles podem se materializar na prática, considerando a mentalidade estratégica e o foco no cliente. O texto que será postado nessa atividade colaborativa deve ser fruto da conversa entre gamer e oráculo. A primeira postagem relevante (com mais de 140 caracteres) conta pontos para o gamer. Participem!'
     )
   ];
-
   comments: Comments[] = [
     new Comments(
       ++this.mockId,
@@ -124,7 +129,6 @@ export class HomeComponent implements OnInit {
       Math.floor(Math.random() * 5)
     )
   ];
-
   activityFilters: FilterConfig[] = [
     new FilterConfig(
       ++this.mockId,
@@ -203,7 +207,7 @@ export class HomeComponent implements OnInit {
 
   styleConfig: Object = themes.bancodobrasil;
   isMobile: boolean = false;
-  constructor() { }
+  constructor(private router: Router) { }
   randomDate(start, end) {
     return moment(new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()))).fromNow();
   }
@@ -293,7 +297,7 @@ export class HomeComponent implements OnInit {
       }
     });
   }
-  onClickLink(item) {
-    alert(JSON.stringify(item))
+  onClickLink(item, route) {
+    this.router.navigate([`/${route}`], {state: {data: item}})
   }
 }

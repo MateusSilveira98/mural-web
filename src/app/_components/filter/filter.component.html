@@ -1,13 +1,13 @@
 <section class="filter">
   <div class="onchange-filter" *ngIf="!isSubmit">
-    <div class="fields font-14" [ngStyle]="{color: style.secondary.main}">
+    <div class="fields font-14" [ngStyle]="{color: style?.secondary?.main}">
       <ng-container *ngFor="let filter of filters">
         <div class="field" [ngStyle]='{width: fieldWidth}' *ngIf="filter.type == 'input'">
           <input type="text" (change)="onFilter.emit(filter)" [(ngModel)]="filter.value"
             [placeholder]="filter.placeholder" />
         </div>
         <div class="field" [ngStyle]='{width: fieldWidth}' *ngIf="filter.type == 'select' || filter.type == 'orderBy'">
-          <select (change)="onFilter.emit(filter)" [(ngModel)]="filter.value" [ngStyle]="{color: style.secondary.main}">
+          <select (change)="onFilter.emit(filter)" [(ngModel)]="filter.value" [ngStyle]="{color: style?.secondary?.main}">
             <option value="null" disabled>{{filter.placeholder}}</option>
             <option [value]="option.value" *ngFor="let option of filter.options">{{option.valueLabel}}</option>
           </select>
@@ -23,7 +23,7 @@
     </div>
   </div>
   <div class="onsubmit-filter" *ngIf="isSubmit">
-    <div class="fields font-14" [ngStyle]="{color: style.secondary.main}">
+    <div class="fields font-14" [ngStyle]="{color: style?.secondary?.main}">
       <ng-container *ngFor="let filter of filters">
         <div class="field" [ngStyle]='{width: fieldWidth}' *ngIf="filter.type == 'input'">
           <input type="text" [(ngModel)]="filter.value" [placeholder]="filter.placeholder"
@@ -44,10 +44,18 @@
             <span class="label">{{filter.label}}</span>
           </label>
         </div>
+        <div class="field" [ngStyle]='{width: fieldWidth}' *ngIf="filter.type == 'daterange'">
+          <label class="checkbox">
+            <input type="checkbox" [(ngModel)]="filter.value" [id]="filter.id"
+              (change)="selectedFilters[filter.name] = filter.value" />
+            <span class="checkmark"></span>
+            <span class="label">{{filter.label}}</span>
+          </label>
+        </div>
       </ng-container>
     </div>
     <div class="buttons">
-      <a class="btn cursor-pointer mr-4" [ngStyle]="style.primary.background"
+      <a class="btn cursor-pointer mr-4" [ngStyle]="style?.primary?.background"
         (click)="onFilter.emit(selectedFilters)">Filtrar</a>
       <a class="btn cursor-pointer" [ngStyle]="style.primary.background" (click)="clear()">Limpar</a>
     </div>

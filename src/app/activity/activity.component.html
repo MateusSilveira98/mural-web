@@ -1,19 +1,69 @@
 <section class="activity">
   <header>
     <p>
-      {{activity.description}}
+      Este é o primeiro momento de atuação do oráculo. Aqui, vocês deverão discutir sobre os principais pontos das
+      videoaulas que fazem parte do desafio 1.1 e elencar de que forma eles podem se materializar na prática,
+      considerando a mentalidade estratégica e o foco no cliente. O texto que será postado nessa atividade colaborativa
+      deve ser fruto da conversa entre gamer e oráculo. A primeira postagem relevante (com mais de 140 caracteres) conta
+      pontos para o gamer. Participem!
     </p>
     <p>
       <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
       <span>Anexo</span>
     </p>
     <div class="actions">
-      <a  class="btn">adicionar comentário</a>
-      <a  class="btn">curtir</a>
-      <span>{{totalLikes}} curtiram</span>
+      <a class="btn">adicionar comentário</a>
+      <a class="btn">curtir</a>
+      <span>12 curtiram</span>
     </div>
   </header>
   <h1>Comentários para esta atividade</h1>
   <filter [isSubmit]="true"></filter>
-  
+  <div class="commentcard">
+    <header>
+      <div class="image">
+        <img [src]="'assets/images/persona1'" [alt]="'tutor'">
+      </div>
+      <div class="name">
+        <p>Pedro de Alcântara João Carlos Leopoldo Salvador</p>
+        <span>26 dias atrás</span>
+      </div>
+      <div class="check">
+        <label>Lido</label>
+        <input type="checkbox">
+      </div>
+    </header>
+    <div class="content">
+      <p>
+        O Banco do Brasil uma empresa com tradição no mercado financeiro, nesse momento de profundas mudanças no mundo
+        vem oferecer aos seus clientes esse espaço com tecnologia de ponta, mesmo porque não é uma questão somente de
+        lançar novidades no mercado e sim de sobrevivência. Porque se sabe que o mercado a cada dia oferece mais e mais
+        ferramentas digitais, de modo que o cliente é atraído por essas facilidades. O cliente de hoje quer ganhar
+        tempo, quer poder resolver seus problemas bancários de onde ele estiver e por isso se o Banco não se situar
+        nesse mundo em busca de oferecer um diferencial com certeza irá terminar perdendo clientela. Devido a isso os
+        funcionários a cada dia devem se situar com essa nova linguagem e com isso poder oferecer aos nossos clientes
+        essas vastas opções do mundo digital.
+      </p>
+      <footer>
+        <div class="item">
+          <a class="btn">responder</a>
+          <span>1 resposta</span>
+        </div>
+        <div class="item">
+
+          <span>Relevâcia:</span>
+          <i class="fa fa-star-o"></i>
+          <i class="fa fa-star-o"></i>
+          <i class="fa fa-star-o"></i>
+          <i class="fa fa-star-o"></i>
+          <i class="fa fa-star-o"></i>
+          <span>(4.6)</span>
+          <span>247 opinaram</span>
+          <div class="pipe"></div>
+          <a class="btn">curtir</a>
+          <span>85 curtiram</span>
+        </div>
+      </footer>
+    </div>
+  </div>
 </section>

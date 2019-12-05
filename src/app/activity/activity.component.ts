@@ -10,6 +10,7 @@ export class ActivityComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    console.log(history.state.data)
   }
 
 }
