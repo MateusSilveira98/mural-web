@@ -14,11 +14,13 @@ registerLocaleData(localePtBr, 'pt')
 import 'moment/locale/pt-br';
 
 import { HomeComponent } from './home/home.component';
+import { ActivityComponent } from './activity/activity.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    ActivityComponent
   ],
   imports: [
     BrowserModule,

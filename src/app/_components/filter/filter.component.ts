@@ -13,11 +13,18 @@ export class FilterComponent implements OnInit {
   @Output() onFilter = new EventEmitter();
   fieldWidth: string;
   FilterTypes = FilterTypes;
-  selectedFilters: any;
+  selectedFilters: any = {};
   constructor() { }
 
   ngOnInit() {
     this.fieldWidth = `calc(( ( ${this.filters.length <= 2 ? `(100% / ${this.filters.length}) / 2` : `(100% / ${this.filters.length}) * 2`} ) + 1%) - 1%)`;
+  }
+  clear() {
+    this.filters = this.filters.map(item => {
+      item.value = null;
+      return item
+    })
+    this.selectedFilters = {};
   }
 }
 

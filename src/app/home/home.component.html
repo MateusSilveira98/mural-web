@@ -9,9 +9,11 @@
     </carousel>
   </div>
   <div class="mb-4">
-    <h1 class="font-24" [ngStyle]="{color: styleConfig && styleConfig.primary && styleConfig.primary.main}">Atividades
-      Colaborativas</h1>
-    <filter [filters]="activityFilters" [isSubmit]="true" [style]="styleConfig" [isMobile]="isMobile" (onFilter)="filter($event)"></filter>
+    <h1 class="font-24" [ngStyle]="{color: styleConfig && styleConfig.primary && styleConfig.primary.main}">
+      Atividades Colaborativas
+    </h1>
+    <filter [filters]="activityFilters" [style]="styleConfig" [isMobile]="isMobile" (onFilter)="filter($event)">
+    </filter>
     <div class="margin-top-4">
       <generaltable [style]="styleConfig" [isMobile]="isMobile" [config]="activityConfig"
         (onChangePage)="getActivityByPage($event, totalActivitiesPerPage)"
@@ -23,7 +25,8 @@
   <div class="mb-4">
     <h1 class="font-24" [ngStyle]="{color: styleConfig && styleConfig.primary && styleConfig.primary.main}">Comentários
     </h1>
-    <filter [filters]="commentsFilters" [style]="styleConfig" [isMobile]="isMobile" (onFilter)="filter($event)"></filter>
+    <filter [filters]="commentsFilters" [style]="styleConfig" [isMobile]="isMobile" (onFilter)="filter($event)">
+    </filter>
     <div class="margin-top-4">
       <generaltable [style]="styleConfig" [isMobile]="isMobile" [config]="commentsConfig"
         (onChangePage)="getCommentsByPage($event, totalCommentsPerPage)"

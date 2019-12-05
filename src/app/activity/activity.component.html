@@ -1,0 +1,19 @@
+<section class="activity">
+  <header>
+    <p>
+      {{activity.description}}
+    </p>
+    <p>
+      <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+      <span>Anexo</span>
+    </p>
+    <div class="actions">
+      <a  class="btn">adicionar comentário</a>
+      <a  class="btn">curtir</a>
+      <span>{{totalLikes}} curtiram</span>
+    </div>
+  </header>
+  <h1>Comentários para esta atividade</h1>
+  <filter [isSubmit]="true"></filter>
+  
+</section>

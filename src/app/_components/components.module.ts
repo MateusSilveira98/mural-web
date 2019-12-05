@@ -8,12 +8,14 @@ import { RouterModule } from '@angular/router';
 import { GeneralTableComponent } from './generaltable/generaltable.component';
 import { CarouselComponent } from './carousel/carousel.component';
 import { FilterComponent } from './filter/filter.component';
+import { CommentcardComponent } from './commentcard/commentcard.component';
 
 @NgModule({
   declarations: [
     GeneralTableComponent,
     CarouselComponent,
-    FilterComponent
+    FilterComponent,
+    CommentcardComponent
   ],
   imports: [
     BrowserModule,

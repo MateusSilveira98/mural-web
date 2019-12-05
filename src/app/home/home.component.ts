@@ -100,8 +100,8 @@ export class HomeComponent implements OnInit {
       ++this.mockId,
       'Luís Filipe Maria Fernando Gastão',
       `https://picsum.photos/id/${++this.mockId}/900/500`,
-      'Gestão Empresarial',
       'Missão Saiba Mais Game DesEnvolVer Transformação Digital',
+      'Gestão Empresarial',
       this.randomDate(new Date(2013, 0, 1), new Date()),
       Math.floor(Math.random() * 5)
     ),
@@ -109,8 +109,8 @@ export class HomeComponent implements OnInit {
       ++this.mockId,
       'José Antonio Dias Toffoli',
       `https://picsum.photos/id/${++this.mockId}/900/500`,
-      'Gestão de Propina',
       'Missão Saiba Mais Game DesEnvolVer Transformação Digital',
+      'Gestão de Propina',
       this.randomDate(new Date(2013, 0, 1), new Date()),
       Math.floor(Math.random() * 5)
     ),
@@ -149,7 +149,7 @@ export class HomeComponent implements OnInit {
       ++this.mockId,
       'orderBy',
       'Ordenar por',
-      null,
+      'orderBy',
       null,
       null,
       [
@@ -162,7 +162,7 @@ export class HomeComponent implements OnInit {
       ++this.mockId,
       'checkbox',
       null,
-      null,
+      'allComments',
       'Todas que comentei',
       false
     )
