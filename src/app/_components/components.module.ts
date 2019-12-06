@@ -28,7 +28,8 @@ import { CommentcardComponent } from './commentcard/commentcard.component';
   exports: [
     GeneralTableComponent,
     CarouselComponent,
-    FilterComponent
+    FilterComponent,
+    CommentcardComponent
   ],
   providers: []
 })

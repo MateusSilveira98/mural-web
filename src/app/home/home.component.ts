@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import * as themes from '../../themes.json';
+// import * as themes from '../../themes.json';
 import moment from 'moment';
 import _ from 'lodash';
 import { Activity } from '../_models/activity.model.js';
@@ -7,6 +7,7 @@ import { Comments } from '../_models/comments.model.js';
 import { FilterConfig, FilterOptions } from '../_components/filter/filter.component.js';
 import { GeneralTableConfig, GeneralTableProps } from '../_components/generaltable/generaltable.component.js';
 import { Router } from '@angular/router';
+import { AppComponent } from '../app.component.js';
 // const tableStyle = {
 //   pagination: `
 //     ::ng-deep .pagination .page-item.active .page-link {
@@ -29,7 +30,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./home.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent extends AppComponent implements OnInit {
   knowledgePage1: any[] = [1, 2, 3, 4];
   knowledgePage2: any[] = [5, 6, 7, 8];
   knowledgePage3: any[] = [9, 10, 11, 12];
@@ -204,10 +205,7 @@ export class HomeComponent implements OnInit {
   totalActivitiesPerPage: number = 2;
   commentsPage: number = 1;
   totalCommentsPerPage: number = 2;
-
-  styleConfig: Object = themes.bancodobrasil;
-  isMobile: boolean = false;
-  constructor(private router: Router) { }
+  constructor(private router: Router) { super(); }
   randomDate(start, end) {
     return moment(new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()))).fromNow();
   }
@@ -216,7 +214,6 @@ export class HomeComponent implements OnInit {
     this.getKnowledgesByPage(this.knowledgePage);
     this.getCommentsByPage(this.commentsPage, this.totalCommentsPerPage);
     this.getActivityByPage(this.activityPage, this.totalActivitiesPerPage);
-    this.isMobile = window.screen.width <= 800;
   }
   getKnowledgesByPage(page) {
     this.knowledgePage = page;
@@ -264,7 +261,7 @@ export class HomeComponent implements OnInit {
     this.commentsConfig.columns = ['Enviado por', 'título', 'conhecimento', 'comentado', 'relevância', ''];
     this.commentsConfig.props = [
       new GeneralTableProps(this.mockId++, 'sentBy', 'image', '', '', true),
-      new GeneralTableProps(this.mockId++, 'title', 'string', '', '', false),
+      new GeneralTableProps(this.mockId++, 'activityName', 'string', '', '', false),
       new GeneralTableProps(this.mockId++, 'knowledge', 'string', '', '', false),
       new GeneralTableProps(this.mockId++, 'createdAt', 'string', '', '', false),
       new GeneralTableProps(this.mockId++, 'relevance', 'rating', '', '', false),
@@ -298,6 +295,6 @@ export class HomeComponent implements OnInit {
     });
   }
   onClickLink(item, route) {
-    this.router.navigate([`/${route}`], {state: {data: item}})
+    this.router.navigate([`/${route}`], { state: { data: item } })
   }
 }

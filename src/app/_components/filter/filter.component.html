@@ -7,7 +7,8 @@
             [placeholder]="filter.placeholder" />
         </div>
         <div class="field" [ngStyle]='{width: fieldWidth}' *ngIf="filter.type == 'select' || filter.type == 'orderBy'">
-          <select (change)="onFilter.emit(filter)" [(ngModel)]="filter.value" [ngStyle]="{color: style?.secondary?.main}">
+          <select (change)="onFilter.emit(filter)" [(ngModel)]="filter.value"
+            [ngStyle]="{color: style?.secondary?.main}">
             <option value="null" disabled>{{filter.placeholder}}</option>
             <option [value]="option.value" *ngFor="let option of filter.options">{{option.valueLabel}}</option>
           </select>
@@ -45,12 +46,7 @@
           </label>
         </div>
         <div class="field" [ngStyle]='{width: fieldWidth}' *ngIf="filter.type == 'daterange'">
-          <label class="checkbox">
-            <input type="checkbox" [(ngModel)]="filter.value" [id]="filter.id"
-              (change)="selectedFilters[filter.name] = filter.value" />
-            <span class="checkmark"></span>
-            <span class="label">{{filter.label}}</span>
-          </label>
+          depois eu coloco o date picker
         </div>
       </ng-container>
     </div>

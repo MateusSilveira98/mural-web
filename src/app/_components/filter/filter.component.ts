@@ -14,8 +14,9 @@ export class FilterComponent implements OnInit {
   fieldWidth: string;
   FilterTypes = FilterTypes;
   selectedFilters: any = {};
-  constructor() { }
 
+  constructor() {
+  }
   ngOnInit() {
     this.fieldWidth = `calc(( ( ${this.filters.length <= 2 ? `(100% / ${this.filters.length}) / 2` : `(100% / ${this.filters.length}) * 2`} ) + 1%) - 1%)`;
   }

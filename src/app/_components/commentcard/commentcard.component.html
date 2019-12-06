@@ -1,46 +1,39 @@
 <div class="commentcard">
   <header>
     <div class="image">
-      <img [src]="'assets/images/persona1'" [alt]="'tutor'">
+      <img [src]="comment.senderUrl" [alt]="'tutor'">
     </div>
     <div class="name">
-      <p>Pedro de Alcântara João Carlos Leopoldo Salvador</p>
-      <span>26 dias atrás</span>
+      <div class="image" *ngIf="comment.isTutor">
+        <img [src]="'assets/images/tutor.svg'" alt="tutor">
+      </div>
+      <p>{{comment.senderBy}}</p>
+      <span>{{comment.createdAt}}</span>
     </div>
     <div class="check">
       <label>Lido</label>
-      <input type="checkbox">
+      <input type="checkbox" [(ngModel)]="comment.read">
     </div>
   </header>
   <div class="content">
     <p>
-      O Banco do Brasil uma empresa com tradição no mercado financeiro, nesse momento de profundas mudanças no mundo
-      vem oferecer aos seus clientes esse espaço com tecnologia de ponta, mesmo porque não é uma questão somente de
-      lançar novidades no mercado e sim de sobrevivência. Porque se sabe que o mercado a cada dia oferece mais e mais
-      ferramentas digitais, de modo que o cliente é atraído por essas facilidades. O cliente de hoje quer ganhar
-      tempo, quer poder resolver seus problemas bancários de onde ele estiver e por isso se o Banco não se situar
-      nesse mundo em busca de oferecer um diferencial com certeza irá terminar perdendo clientela. Devido a isso os
-      funcionários a cada dia devem se situar com essa nova linguagem e com isso poder oferecer aos nossos clientes
-      essas vastas opções do mundo digital.
+      {{comment.description}}
     </p>
     <footer>
       <div class="item">
-        <a class="btn">responder</a>
-        <span>1 resposta</span>
+        <a class="btn" (click)="isAnsweer" [ngStyle]="">responder</a>
+        <span>{{totalAnswers}} resposta</span>
       </div>
-      <div class="item">
-
+      <div class="item" [ngStyle]="{color: style.primary.main}">
         <span>Relevâcia:</span>
-        <i class="fa fa-star-o"></i>
-        <i class="fa fa-star-o"></i>
-        <i class="fa fa-star-o"></i>
-        <i class="fa fa-star-o"></i>
-        <i class="fa fa-star-o"></i>
-        <span>(4.6)</span>
-        <span>247 opinaram</span>
-        <div class="pipe"></div>
-        <a class="btn">curtir</a>
-        <span>85 curtiram</span>
+        <ng-container *ngFor="let rate of [1,2,3,4,5]">
+          <i [ngClass]="rate < comment.rate ? 'fa fa-star-o' : 'fa fa-star'"></i>
+        </ng-container>
+        <span [ngStyle]="{color: style.secondary.main}">{{averageRate}}</span>
+        <span [ngStyle]="{color: style.secondary.main}">{{totalOpinions}} opinaram</span>
+        <div class="pipe" [ngStyle]="{color: style.secondary.main}"></div>
+        <a class="btn" [ngStyle]="style.primary.background">curtir</a>
+        <span [ngStyle]="{color:  totalLikes === 0 ? style.secondary.main : style.primary.main}">{{totalLikes === 0 ? 'Seja o primeiro a curtir' : 'curtiram'}}</span>
       </div>
     </footer>
   </div>
