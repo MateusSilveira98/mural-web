@@ -10,7 +10,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { ComponentsModule } from './_components/components.module';
 import { registerLocaleData } from '@angular/common';
 import localePtBr from '@angular/common/locales/pt';
-registerLocaleData(localePtBr, 'pt')
+import localeExtraPtBr from '@angular/common/locales/extra/pt';
+registerLocaleData(localePtBr, 'pt', localeExtraPtBr)
 import 'moment/locale/pt-br';
 
 import { HomeComponent } from './home/home.component';

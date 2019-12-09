@@ -14,9 +14,12 @@ export class CommentcardComponent implements OnInit {
   averageRate: number = 0;
   totalOpinions: number = 0;
   totalLikes: number = 0;
+  onHoverRate: number = 0;
   constructor() { }
 
   ngOnInit() {
   }
-
+  rateComment(rate, relevance) {
+    this.comment.relevance = rate === relevance ? 0 : rate;
+  }
 }

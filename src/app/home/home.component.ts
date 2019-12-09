@@ -260,7 +260,7 @@ export class HomeComponent extends AppComponent implements OnInit {
   getCommentsByPage(page, itemsPerPage) {
     this.commentsConfig.columns = ['Enviado por', 'título', 'conhecimento', 'comentado', 'relevância', ''];
     this.commentsConfig.props = [
-      new GeneralTableProps(this.mockId++, 'sentBy', 'image', '', '', true),
+      new GeneralTableProps(this.mockId++, 'author', 'image', '', '', true),
       new GeneralTableProps(this.mockId++, 'activityName', 'string', '', '', false),
       new GeneralTableProps(this.mockId++, 'knowledge', 'string', '', '', false),
       new GeneralTableProps(this.mockId++, 'createdAt', 'string', '', '', false),

@@ -1,11 +1,7 @@
 <section class="activity">
   <header class="mb-5">
     <p>
-      Este é o primeiro momento de atuação do oráculo. Aqui, vocês deverão discutir sobre os principais pontos das
-      videoaulas que fazem parte do desafio 1.1 e elencar de que forma eles podem se materializar na prática,
-      considerando a mentalidade estratégica e o foco no cliente.
-      O texto que será postado nessa atividade colaborativa deve ser fruto da conversa entre gamer e oráculo.
-      A primeira postagem relevante (com mais de 140 caracteres) conta pontos para o gamer. Participem!
+      {{activity.description}}
     </p>
     <p [ngStyle]="{color: styleConfig.primary.main}">
       <i class="fa fa-file-pdf-o mr-2" aria-hidden="true"></i>
@@ -14,7 +10,7 @@
     <div class="actions">
       <a class="btn mr-4" [ngStyle]="styleConfig.primary.background">adicionar comentário</a>
       <a class="btn mr-2" [ngStyle]="styleConfig.primary.background">curtir</a>
-      <span [ngStyle]="{color: styleConfig.primary.main}">12 curtiram</span>
+      <span [ngStyle]="{color: styleConfig.primary.main}">{{activity.likes}} curtiram</span>
     </div>
   </header>
   <h1 class="font-24" [ngStyle]="{color: styleConfig.primary.main}">Comentários para esta atividade</h1>
@@ -23,9 +19,11 @@
     <ng-container *ngFor="let comment of comments">
       <commentcard [style]="styleConfig" [isMobile]="isMobile" [comment]="comment"></commentcard>
       <ng-container *ngIf="comment?.answers?.length > 0">
+        <hr class="ml-5">
         <div class="ml-5" *ngFor="let answer of comment.answers">
           <commentcard [style]="styleConfig" [isMobile]="isMobile" [comment]="answer"></commentcard>
         </div>
+        <hr class="ml-5">
       </ng-container>
     </ng-container>
   </div>

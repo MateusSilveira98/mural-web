@@ -46,7 +46,12 @@
           </label>
         </div>
         <div class="field" [ngStyle]='{width: fieldWidth}' *ngIf="filter.type == 'daterange'">
-          depois eu coloco o date picker
+          <span>Período</span>
+          <i class="fa fa-calendar cursor-pointer" (click)="datepicker.toggle()"></i>
+          <input placeholder="dd/mm/yyyy" [markDisabled]="datepicker.before" [(ngModel)]="date.from" ngbDatepicker #datepicker="ngbDatepicker">
+          <span>a</span>
+          <i class="fa fa-calendar cursor-pointer" (click)="datepicker.toggle()"></i>
+          <input placeholder="dd/mm/yyyy" [markDisabled]="datepicker.after"  [(ngModel)]="date.until" ngbDatepicker #datepicker="ngbDatepicker">
         </div>
       </ng-container>
     </div>

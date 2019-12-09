@@ -1,6 +1,6 @@
 export class Comments {
   id: number;
-  sentBy: string;
+  author: string;
   senderUrl: string;
   activityName: string;
   knowledge: string;
@@ -12,7 +12,7 @@ export class Comments {
   read: boolean;
   constructor(
     id: number = null,
-    sentBy: string = null,
+    author: string = null,
     senderUrl: string = null,
     activityName: string = null,
     knowledge: string = null,
@@ -24,7 +24,7 @@ export class Comments {
     read: boolean = false
   ) {
     this.id = id;
-    this.sentBy = sentBy;
+    this.author = author;
     this.senderUrl = senderUrl;
     this.activityName = activityName;
     this.knowledge = knowledge;
@@ -33,5 +33,6 @@ export class Comments {
     this.answers = answers;
     this.isTutor = isTutor;
     this.description = description;
+    this.read = read;
   }
 }

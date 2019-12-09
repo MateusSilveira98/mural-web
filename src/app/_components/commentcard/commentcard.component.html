@@ -1,40 +1,60 @@
 <div class="commentcard">
-  <header>
-    <div class="image">
-      <img [src]="comment.senderUrl" [alt]="'tutor'">
-    </div>
-    <div class="name">
+  <header [ngClass]="{'is-tutor': comment.isTutor}" [ngStyle]="{borderColor: style.featured}">
+    <div class="titlename">
+      <div class="image" [ngClass]="{'is-tutor': comment.isTutor, 'mr-4': !comment.isTutor}"
+        [ngStyle]="{borderColor: style.featured}">
+        <img [src]="comment.senderUrl" [alt]="'tutor'">
+      </div>
       <div class="image" *ngIf="comment.isTutor">
         <img [src]="'assets/images/tutor.svg'" alt="tutor">
       </div>
-      <p>{{comment.senderBy}}</p>
-      <span>{{comment.createdAt}}</span>
+      <div class="name">
+        <p class="font-16">{{comment.author}}</p>
+        <span class="font-12" [ngStyle]="{color: style.secondary.main}">{{comment.createdAt}}</span>
+      </div>
     </div>
-    <div class="check">
-      <label>Lido</label>
-      <input type="checkbox" [(ngModel)]="comment.read">
+    <div class="check" [ngStyle]="{color: style.primary.main}">
+      <span class="font-12 mr-2">Lido</span>
+      <label class="checkbox">
+        <input type="checkbox" [(ngModel)]="comment.read" />
+        <span class="checkmark" [ngStyle]="{color: style.primary.main, borderColor: style.primary.main}"></span>
+      </label>
     </div>
   </header>
-  <div class="content">
-    <p>
+  <div class="content" [ngStyle]="{backgroundColor: comment.isTutor && style.elementsBackground}">
+    <p class="font-15 mb-4">
       {{comment.description}}
     </p>
     <footer>
       <div class="item">
-        <a class="btn" (click)="isAnsweer" [ngStyle]="">responder</a>
-        <span>{{totalAnswers}} resposta</span>
+        <a class="btn mr-4 " (click)="showAnswer = true"
+          [ngStyle]="{backgroundColor: showAnswer ? style.secondary.main : style.primary.main, color: howAnswer ? style.secondary.background.color : style.primary.background.color}">responder</a>
+        <span class="font-14" [ngStyle]="{color: style.secondary.main}">{{comment.answers.length}} resposta</span>
       </div>
-      <div class="item" [ngStyle]="{color: style.primary.main}">
+      <div class="item font-14" [ngStyle]="{color: style.primary.main}">
         <span>Relevâcia:</span>
-        <ng-container *ngFor="let rate of [1,2,3,4,5]">
-          <i [ngClass]="rate < comment.rate ? 'fa fa-star-o' : 'fa fa-star'"></i>
-        </ng-container>
-        <span [ngStyle]="{color: style.secondary.main}">{{averageRate}}</span>
-        <span [ngStyle]="{color: style.secondary.main}">{{totalOpinions}} opinaram</span>
+        <div class="d-flex align-items-center justify-content-between">
+          <ng-container *ngFor="let rate of [1,2,3,4,5]">
+            <i (mouseover)="onHoverRate = rate" (click)="rateComment(rate, comment.relevance)"
+              (mouseleave)="onHoverRate = 0"
+              [ngClass]="rate <= comment.relevance || onHoverRate >= rate ? 'fa fa-star cursor-pointer' : 'fa fa-star-o  cursor-pointer'"></i>
+          </ng-container>
+          <span class="font-10" [ngStyle]="{color: style.secondary.main}">({{comment.relevance}})</span>
+        </div>
+        <span [ngStyle]="{color: style.secondary.main}">{{comment.answers.length}} opinaram</span>
         <div class="pipe" [ngStyle]="{color: style.secondary.main}"></div>
-        <a class="btn" [ngStyle]="style.primary.background">curtir</a>
-        <span [ngStyle]="{color:  totalLikes === 0 ? style.secondary.main : style.primary.main}">{{totalLikes === 0 ? 'Seja o primeiro a curtir' : 'curtiram'}}</span>
+        <a class="btn font-16" [ngStyle]="style.primary.background">curtir</a>
+        <span
+          [ngStyle]="{color:  totalLikes === 0 ? style.secondary.main : style.primary.main}">{{totalLikes === 0 ? 'Seja o primeiro a curtir' : totalLikes + ' curtiram'}}</span>
       </div>
     </footer>
+    <div class="answer" *ngIf="showAnswer">
+      <p class="font-18 font-weight-bold">Mensagem</p>
+      <textarea cols="30" rows="10" [ngStyle]="{borderColor: style.secondary.main}">{{comment.description}}</textarea>
+      <div class="d-flex justify-content-end align-items-center">
+        <a class="btn mr-4" [ngStyle]="style.primary.outline" (click)="showAnswer = false"> Cancelar </a>
+        <a class="btn" [ngStyle]="style.primary.background" (click)="showAnswer = false"> Publicar </a>
+      </div>
+    </div>
   </div>
 </div>

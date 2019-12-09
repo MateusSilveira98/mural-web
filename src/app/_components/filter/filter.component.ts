@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { NgbDate, NgbCalendar, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'filter',
@@ -14,7 +15,12 @@ export class FilterComponent implements OnInit {
   fieldWidth: string;
   FilterTypes = FilterTypes;
   selectedFilters: any = {};
-
+  date: any = {
+    from: null,
+    until: null,
+    disabledFrom: {year: null, month: null, day: null},
+    disabledUntil: {year: null, month: null, day: null}
+  }
   constructor() {
   }
   ngOnInit() {
@@ -26,6 +32,8 @@ export class FilterComponent implements OnInit {
       return item
     })
     this.selectedFilters = {};
+  }
+  dateSelect(value, type) {
   }
 }
 
