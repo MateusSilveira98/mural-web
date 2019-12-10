@@ -18,10 +18,16 @@ export class FilterComponent implements OnInit {
   date: any = {
     from: null,
     until: null,
-    disabledFrom: {year: null, month: null, day: null},
-    disabledUntil: {year: null, month: null, day: null}
+    disabledFrom: { year: null, month: null, day: null },
+    disabledUntil: { year: null, month: null, day: null }
   }
-  constructor() {
+  hoveredDate: NgbDate;
+
+  fromDate: NgbDate;
+  toDate: NgbDate;
+  constructor(private calendar: NgbCalendar, public formatter: NgbDateParserFormatter) {
+    this.fromDate = calendar.getToday();
+    this.toDate = calendar.getNext(calendar.getToday(), 'd', 10);
   }
   ngOnInit() {
     this.fieldWidth = `calc(( ( ${this.filters.length <= 2 ? `(100% / ${this.filters.length}) / 2` : `(100% / ${this.filters.length}) * 2`} ) + 1%) - 1%)`;
@@ -33,7 +39,32 @@ export class FilterComponent implements OnInit {
     })
     this.selectedFilters = {};
   }
-  dateSelect(value, type) {
+  onDateSelection(date: NgbDate) {
+    if (!this.fromDate && !this.toDate) {
+      this.fromDate = date;
+    } else if (this.fromDate && !this.toDate && date.after(this.fromDate)) {
+      this.toDate = date;
+    } else {
+      this.toDate = null;
+      this.fromDate = date;
+    }
+  }
+
+  isHovered(date: NgbDate) {
+    return this.fromDate && !this.toDate && this.hoveredDate && date.after(this.fromDate) && date.before(this.hoveredDate);
+  }
+
+  isInside(date: NgbDate) {
+    return date.after(this.fromDate) && date.before(this.toDate);
+  }
+
+  isRange(date: NgbDate) {
+    return date.equals(this.fromDate) || date.equals(this.toDate) || this.isInside(date) || this.isHovered(date);
+  }
+
+  validateInput(currentValue: NgbDate, input: string): NgbDate {
+    const parsed = this.formatter.parse(input);
+    return parsed && this.calendar.isValid(NgbDate.from(parsed)) ? NgbDate.from(parsed) : currentValue;
   }
 }
 

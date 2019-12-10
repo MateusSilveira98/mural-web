@@ -45,13 +45,47 @@
             <span class="label">{{filter.label}}</span>
           </label>
         </div>
-        <div class="field" [ngStyle]='{width: fieldWidth}' *ngIf="filter.type == 'daterange'">
-          <span>Período</span>
-          <i class="fa fa-calendar cursor-pointer" (click)="datepicker.toggle()"></i>
-          <input placeholder="dd/mm/yyyy" [markDisabled]="datepicker.before" [(ngModel)]="date.from" ngbDatepicker #datepicker="ngbDatepicker">
-          <span>a</span>
-          <i class="fa fa-calendar cursor-pointer" (click)="datepicker.toggle()"></i>
-          <input placeholder="dd/mm/yyyy" [markDisabled]="datepicker.after"  [(ngModel)]="date.until" ngbDatepicker #datepicker="ngbDatepicker">
+        <div class="field" style='width: 70%;' *ngIf="filter.type == 'daterange'">
+          <form class="form-inline">
+            <div class="form-group hidden">
+              <div class="input-group">
+                <input name="datepicker" class="form-control d-none" ngbDatepicker #datepicker="ngbDatepicker"
+                  [autoClose]="'outside'" (dateSelect)="onDateSelection($event)" [displayMonths]="2" [dayTemplate]="t"
+                  outsideDays="hidden" [startDate]="fromDate">
+                <ng-template #t let-date let-focused="focused">
+                  <span class="custom-day" [class.focused]="focused" [class.range]="isRange(date)"
+                    [class.faded]="isHovered(date) || isInside(date)" (mouseenter)="hoveredDate = date"
+                    (mouseleave)="hoveredDate = null">
+                    {{ date.day }}
+                  </span>
+                </ng-template>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="input-group">
+                <span>Período</span>
+                <div class="input-group-prepend">
+                  <button class="btn" (click)="datepicker.toggle()" type="button">
+                    <i class="fa fa-calendar"></i>
+                  </button>
+                </div>
+                <input #dpFromDate class="form-control" placeholder="yyyy-mm-dd" name="dpFromDate"
+                  [value]="formatter.format(fromDate)" (input)="fromDate = validateInput(fromDate, dpFromDate.value)">
+              </div>
+            </div>
+            <div class="form-group ml-2">
+              <span>a</span>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <button class="btn" (click)="datepicker.toggle()" type="button">
+                    <i class="fa fa-calendar"></i>
+                  </button>
+                </div>
+                <input #dpToDate class="form-control" placeholder="yyyy-mm-dd" name="dpToDate"
+                  [value]="formatter.format(toDate)" (input)="toDate = validateInput(toDate, dpToDate.value)">
+              </div>
+            </div>
+          </form>
         </div>
       </ng-container>
     </div>
