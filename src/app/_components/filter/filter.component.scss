@@ -1,6 +1,15 @@
 p {
   margin: 0;
 }
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+::ng-deep {
+  *:focus {
+    outline: none;
+  }
+}
 .filter {
   .fields {
     display: flex;

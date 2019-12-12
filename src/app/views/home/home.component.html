@@ -3,10 +3,10 @@
     <h1 class="font-24" [ngStyle]="{color: styleConfig && styleConfig.primary && styleConfig.primary.main}">
       Meus Conhecimentos
     </h1>
-    <carousel [items]="knowledges" [isMobile]="isMobile" [itemsPerPage]="4" [totalItems]="totalKnowledges"
+    <cardcarousel [items]="knowledges" [isMobile]="isMobile" [itemsPerPage]="4" [totalItems]="totalKnowledges"
       [page]="knowledgePage" [style]="styleConfig" (clickOnPrev)="getKnowledgesByPage($event)"
       (clickOnNext)="getKnowledgesByPage($event)" (clickOnIndicator)="getKnowledgesByPage($event)">
-    </carousel>
+    </cardcarousel>
   </div>
   <div class="mb-4">
     <h1 class="font-24" [ngStyle]="{color: styleConfig && styleConfig.primary && styleConfig.primary.main}">

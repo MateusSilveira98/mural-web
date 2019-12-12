@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import moment from 'moment';
 import _ from 'lodash';
-import { AppComponent } from '../app.component';
-import { FilterConfig, FilterOptions } from '../_components/filter/filter.component';
-import { Comments } from '../_models/comments.model';
-import { Activity } from '../_models/activity.model';
+import { AppComponent } from '../../app.component';
+import { FilterConfig, FilterOptions } from '../../_components/filter/filter.component';
+import { Comments } from '../../_models/comments.model';
+import { Activity } from '../../_models/activity.model';
 import { Router } from '@angular/router';
 @Component({
   selector: 'activity',

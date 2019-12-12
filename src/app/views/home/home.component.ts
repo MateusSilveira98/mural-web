@@ -1,29 +1,14 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-// import * as themes from '../../themes.json';
 import moment from 'moment';
 import _ from 'lodash';
-import { Activity } from '../_models/activity.model.js';
-import { Comments } from '../_models/comments.model.js';
-import { FilterConfig, FilterOptions } from '../_components/filter/filter.component.js';
-import { GeneralTableConfig, GeneralTableProps } from '../_components/generaltable/generaltable.component.js';
+import { Activity } from '../../_models/activity.model';
+import { Comments } from '../../_models/comments.model';
+import { FilterConfig, FilterOptions } from '../../_components/filter/filter.component';
+import { GeneralTableConfig, GeneralTableProps } from '../../_components/generaltable/generaltable.component';
 import { Router } from '@angular/router';
-import { AppComponent } from '../app.component.js';
-// const tableStyle = {
-//   pagination: `
-//     ::ng-deep .pagination .page-item.active .page-link {
-//       color: ${themes.bancodobrasil.primary.main}!important;
-//     }
-//     ::ng-deep .pagination .page-item.disabled .page-link {
-//       color: ${themes.bancodobrasil.secondary.main}!important;
-//     }
-//     ::ng-deep .pagination .page-item:last-child .page-link, ::ng-deep .pagination .page-item:first-child .page-link {
-//       color: ${themes.bancodobrasil.primary.main}!important;
-//     }
-//     ::ng-deep .pagination .page-link {
-//       color: ${themes.bancodobrasil.secondary.main}!important;
-//     }
-//   `
-// }
+import { AppComponent } from '../../app.component';
+import { Knowledge } from '../../_models/knowledge.model';
+
 @Component({
   selector: 'home',
   templateUrl: './home.component.html',
@@ -35,54 +20,12 @@ export class HomeComponent extends AppComponent implements OnInit {
   knowledgePage2: any[] = [5, 6, 7, 8];
   knowledgePage3: any[] = [9, 10, 11, 12];
   totalKnowledges: number = 12;
-  knowledges: any[] = [];
+  knowledges: Knowledge[] = [];
   knowledgePage: number = 1;
 
   activityConfig: GeneralTableConfig = new GeneralTableConfig();
   commentsConfig: GeneralTableConfig = new GeneralTableConfig();
   mockId: number = 1;
-  activities: Activity[] = [
-    new Activity(
-      ++this.mockId,
-      'Desafio 3.2 - Momento Oráculo - Transformação Digital e as Relações com o Cliente Externo',
-      'Gestão Empresarial',
-      Math.floor(Math.random() * 9999),
-      Math.floor(Math.random() * 9999),
-      'Este é o primeiro momento de atuação do oráculo. Aqui, vocês deverão discutir sobre os principais pontos das videoaulas que fazem parte do desafio 1.1 e elencar de que forma eles podem se materializar na prática, considerando a mentalidade estratégica e o foco no cliente. O texto que será postado nessa atividade colaborativa deve ser fruto da conversa entre gamer e oráculo. A primeira postagem relevante (com mais de 140 caracteres) conta pontos para o gamer. Participem!'
-    ),
-    new Activity(
-      ++this.mockId,
-      'Desafio 3.1 - Momento Oráculo - Transformação Digital e as Relações com o Cliente Interno',
-      'Gestão Empresarial',
-      Math.floor(Math.random() * 9999),
-      Math.floor(Math.random() * 9999),
-      'Este é o primeiro momento de atuação do oráculo. Aqui, vocês deverão discutir sobre os principais pontos das videoaulas que fazem parte do desafio 1.1 e elencar de que forma eles podem se materializar na prática, considerando a mentalidade estratégica e o foco no cliente. O texto que será postado nessa atividade colaborativa deve ser fruto da conversa entre gamer e oráculo. A primeira postagem relevante (com mais de 140 caracteres) conta pontos para o gamer. Participem!'
-    ),
-    new Activity(
-      ++this.mockId,
-      'Desafio 3.4 - Youtubers BB - Atendimento Digital e as Relações com o Cliente Externo',
-      'Gestão de Pessoas',
-      Math.floor(Math.random() * 9999),
-      Math.floor(Math.random() * 9999),
-      'Este é o primeiro momento de atuação do oráculo. Aqui, vocês deverão discutir sobre os principais pontos das videoaulas que fazem parte do desafio 1.1 e elencar de que forma eles podem se materializar na prática, considerando a mentalidade estratégica e o foco no cliente. O texto que será postado nessa atividade colaborativa deve ser fruto da conversa entre gamer e oráculo. A primeira postagem relevante (com mais de 140 caracteres) conta pontos para o gamer. Participem!'
-    ),
-    new Activity(
-      ++this.mockId,
-      'Desafio 2.2: Atividade colaborativa Transformação Digital e o BB',
-      'Gestão de Pessoas',
-      Math.floor(Math.random() * 9999),
-      Math.floor(Math.random() * 9999),
-      'Este é o primeiro momento de atuação do oráculo. Aqui, vocês deverão discutir sobre os principais pontos das videoaulas que fazem parte do desafio 1.1 e elencar de que forma eles podem se materializar na prática, considerando a mentalidade estratégica e o foco no cliente. O texto que será postado nessa atividade colaborativa deve ser fruto da conversa entre gamer e oráculo. A primeira postagem relevante (com mais de 140 caracteres) conta pontos para o gamer. Participem!'
-    ),
-    new Activity(
-      ++this.mockId,
-      'Desafio 1.2 Momento Oráculo - Cursos',
-      'Gestão de T.I',
-      Math.floor(Math.random() * 9999),
-      Math.floor(Math.random() * 9999),
-      'Este é o primeiro momento de atuação do oráculo. Aqui, vocês deverão discutir sobre os principais pontos das videoaulas que fazem parte do desafio 1.1 e elencar de que forma eles podem se materializar na prática, considerando a mentalidade estratégica e o foco no cliente. O texto que será postado nessa atividade colaborativa deve ser fruto da conversa entre gamer e oráculo. A primeira postagem relevante (com mais de 140 caracteres) conta pontos para o gamer. Participem!'
-    )
-  ];
   comments: Comments[] = [
     new Comments(
       ++this.mockId,
@@ -128,6 +71,48 @@ export class HomeComponent extends AppComponent implements OnInit {
       'Gestão de T.I',
       this.randomDate(new Date(2013, 0, 1), new Date()),
       Math.floor(Math.random() * 5)
+    )
+  ];
+  activities: Activity[] = [
+    new Activity(
+      ++this.mockId,
+      'Desafio 3.2 - Momento Oráculo - Transformação Digital e as Relações com o Cliente Externo',
+      'Gestão Empresarial',
+      this.comments,
+      Math.floor(Math.random() * 9999),
+      'Este é o primeiro momento de atuação do oráculo. Aqui, vocês deverão discutir sobre os principais pontos das videoaulas que fazem parte do desafio 1.1 e elencar de que forma eles podem se materializar na prática, considerando a mentalidade estratégica e o foco no cliente. O texto que será postado nessa atividade colaborativa deve ser fruto da conversa entre gamer e oráculo. A primeira postagem relevante (com mais de 140 caracteres) conta pontos para o gamer. Participem!'
+    ),
+    new Activity(
+      ++this.mockId,
+      'Desafio 3.1 - Momento Oráculo - Transformação Digital e as Relações com o Cliente Interno',
+      'Gestão Empresarial',
+      this.comments,
+      Math.floor(Math.random() * 9999),
+      'Este é o primeiro momento de atuação do oráculo. Aqui, vocês deverão discutir sobre os principais pontos das videoaulas que fazem parte do desafio 1.1 e elencar de que forma eles podem se materializar na prática, considerando a mentalidade estratégica e o foco no cliente. O texto que será postado nessa atividade colaborativa deve ser fruto da conversa entre gamer e oráculo. A primeira postagem relevante (com mais de 140 caracteres) conta pontos para o gamer. Participem!'
+    ),
+    new Activity(
+      ++this.mockId,
+      'Desafio 3.4 - Youtubers BB - Atendimento Digital e as Relações com o Cliente Externo',
+      'Gestão de Pessoas',
+      this.comments,
+      Math.floor(Math.random() * 9999),
+      'Este é o primeiro momento de atuação do oráculo. Aqui, vocês deverão discutir sobre os principais pontos das videoaulas que fazem parte do desafio 1.1 e elencar de que forma eles podem se materializar na prática, considerando a mentalidade estratégica e o foco no cliente. O texto que será postado nessa atividade colaborativa deve ser fruto da conversa entre gamer e oráculo. A primeira postagem relevante (com mais de 140 caracteres) conta pontos para o gamer. Participem!'
+    ),
+    new Activity(
+      ++this.mockId,
+      'Desafio 2.2: Atividade colaborativa Transformação Digital e o BB',
+      'Gestão de Pessoas',
+      this.comments,
+      Math.floor(Math.random() * 9999),
+      'Este é o primeiro momento de atuação do oráculo. Aqui, vocês deverão discutir sobre os principais pontos das videoaulas que fazem parte do desafio 1.1 e elencar de que forma eles podem se materializar na prática, considerando a mentalidade estratégica e o foco no cliente. O texto que será postado nessa atividade colaborativa deve ser fruto da conversa entre gamer e oráculo. A primeira postagem relevante (com mais de 140 caracteres) conta pontos para o gamer. Participem!'
+    ),
+    new Activity(
+      ++this.mockId,
+      'Desafio 1.2 Momento Oráculo - Cursos',
+      'Gestão de T.I',
+      this.comments,
+      Math.floor(Math.random() * 9999),
+      'Este é o primeiro momento de atuação do oráculo. Aqui, vocês deverão discutir sobre os principais pontos das videoaulas que fazem parte do desafio 1.1 e elencar de que forma eles podem se materializar na prática, considerando a mentalidade estratégica e o foco no cliente. O texto que será postado nessa atividade colaborativa deve ser fruto da conversa entre gamer e oráculo. A primeira postagem relevante (com mais de 140 caracteres) conta pontos para o gamer. Participem!'
     )
   ];
   activityFilters: FilterConfig[] = [
@@ -244,7 +229,7 @@ export class HomeComponent extends AppComponent implements OnInit {
     this.activityConfig.props = [
       new GeneralTableProps(this.mockId++, 'title', 'string', '', '', true),
       new GeneralTableProps(this.mockId++, 'knowledge', 'string', '', '', false),
-      new GeneralTableProps(this.mockId++, 'comments', 'string', '', '', false),
+      new GeneralTableProps(this.mockId++, 'comments', 'object', 'length', '', false),
       new GeneralTableProps(this.mockId++, 'likes', 'string', '', '', false),
       new GeneralTableProps(this.mockId++, '', 'link', '', 'acessar', false)
     ];
@@ -286,12 +271,12 @@ export class HomeComponent extends AppComponent implements OnInit {
   }
   mountMockKnowledge(array) {
     return array.map((n) => {
-      return {
-        title: `Título ${n}`,
-        activitiesTotal: Math.floor(Math.random() * 10),
-        commentsTotal: Math.floor(Math.random() * 10),
-        image: `https://picsum.photos/id/${n}/900/500`
-      }
+      return new Knowledge(
+        n * this.mockId,
+        `Título ${n}`,
+        `https://picsum.photos/id/${n}/900/500`,
+        this.activities
+      )
     });
   }
   onClickLink(item, route) {

@@ -2,11 +2,11 @@ import { Component, OnInit, Input, Output, EventEmitter, SimpleChanges, SimpleCh
 import { NgbCarousel } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
-  selector: 'carousel',
-  templateUrl: './carousel.component.html',
-  styleUrls: ['./carousel.component.scss']
+  selector: 'cardcarousel',
+  templateUrl: './cardcarousel.component.html',
+  styleUrls: ['./cardcarousel.component.scss']
 })
-export class CarouselComponent implements OnInit {
+export class CardCarouselComponent implements OnInit {
   @Input() items: any[] = [];
   @Input() itemsPerPage: number;
   @Input() totalItems: number;
@@ -19,8 +19,8 @@ export class CarouselComponent implements OnInit {
   @ViewChild('carousel', { static: false }) carousel: NgbCarousel;
   slides: any[] = [];
   indicators: any[] = [];
-  constructor() { }
   mobileCarouselCount: number = 1;
+  constructor() { }
   ngOnInit() {
     this.indicators = new Array(Math.round(this.totalItems / this.itemsPerPage));
   }

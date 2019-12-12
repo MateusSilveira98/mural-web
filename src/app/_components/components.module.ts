@@ -1,38 +1,33 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NgbModule, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule, NgbDateParserFormatter, NgbDatepickerI18n } from '@ng-bootstrap/ng-bootstrap';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
 
 
 import { GeneralTableComponent } from './generaltable/generaltable.component';
-import { CarouselComponent } from './carousel/carousel.component';
 import { FilterComponent } from './filter/filter.component';
-import { CommentcardComponent } from './commentcard/commentcard.component';
-import moment from 'moment';
+import { I18n, CustomDatepickerI18n } from '../_helpers/CustomDatepickerI18n';
+import { NgbDatePTParserFormatter } from '../_helpers/NgbDatePTParserFormatter';
 @NgModule({
   declarations: [
     GeneralTableComponent,
-    CarouselComponent,
-    FilterComponent,
-    CommentcardComponent
+    FilterComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    RouterModule,
     NgbModule,
     CommonModule,
     ReactiveFormsModule
   ],
   exports: [
     GeneralTableComponent,
-    CarouselComponent,
-    FilterComponent,
-    CommentcardComponent
+    FilterComponent
   ],
   providers: [
+    [I18n, { provide: NgbDatepickerI18n, useClass: CustomDatepickerI18n }],
+    [{ provide: NgbDateParserFormatter, useClass: NgbDatePTParserFormatter }],
   ]
 })
 export class ComponentsModule { }

@@ -6,7 +6,7 @@ import { Comments } from 'src/app/_models/comments.model';
   templateUrl: './commentcard.component.html',
   styleUrls: ['./commentcard.component.scss']
 })
-export class CommentcardComponent implements OnInit {
+export class CommentCardComponent implements OnInit {
   @Input() style: Object;
   @Input() isMobile: boolean = false;
   @Input() comment: Comments = new Comments();

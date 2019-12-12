@@ -1,15 +1,17 @@
+import { Comments } from './comments.model';
+
 export class Activity {
   id: number;
   title: string;
   knowledge: string;
-  comments: number;
+  comments: Comments[];
   likes: number;
   description: string;
   constructor(
     id: number = null,
     title: string = null,
     knowledge: string = null,
-    comments: number = null,
+    comments: Comments[] = null,
     likes: number = null,
     description: string = null
   ) {
