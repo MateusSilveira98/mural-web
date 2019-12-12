@@ -1,6 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { NgbDate, NgbCalendar, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
-
 @Component({
   selector: 'filter',
   templateUrl: './filter.component.html',
@@ -49,7 +48,6 @@ export class FilterComponent implements OnInit {
       this.fromDate = date;
     }
   }
-
   isHovered(date: NgbDate) {
     return this.fromDate && !this.toDate && this.hoveredDate && date.after(this.fromDate) && date.before(this.hoveredDate);
   }
@@ -63,7 +61,7 @@ export class FilterComponent implements OnInit {
   }
 
   validateInput(currentValue: NgbDate, input: string): NgbDate {
-    const parsed = this.formatter.parse(input);
+    let parsed = this.formatter.parse(input);
     return parsed && this.calendar.isValid(NgbDate.from(parsed)) ? NgbDate.from(parsed) : currentValue;
   }
 }

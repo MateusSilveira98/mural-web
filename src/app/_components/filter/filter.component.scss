@@ -1,3 +1,6 @@
+p {
+  margin: 0;
+}
 .filter {
   .fields {
     display: flex;
@@ -114,14 +117,17 @@
 .form-group {
   .input-group-prepend button {
     border: none;
-    border-bottom: 1px solid;
-    border-radius: 0;
+    outline: none;
   }
   input {
+    outline: none;
     &.form-control {
       border: none;
       border-bottom: 1px solid;
       border-radius: 0;
     }
+  }
+  .input-group {
+    align-items: flex-end;
   }
 }

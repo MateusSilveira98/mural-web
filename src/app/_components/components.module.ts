@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
@@ -10,7 +10,7 @@ import { GeneralTableComponent } from './generaltable/generaltable.component';
 import { CarouselComponent } from './carousel/carousel.component';
 import { FilterComponent } from './filter/filter.component';
 import { CommentcardComponent } from './commentcard/commentcard.component';
-
+import moment from 'moment';
 @NgModule({
   declarations: [
     GeneralTableComponent,
@@ -32,6 +32,7 @@ import { CommentcardComponent } from './commentcard/commentcard.component';
     FilterComponent,
     CommentcardComponent
   ],
-  providers: []
+  providers: [
+  ]
 })
 export class ComponentsModule { }
