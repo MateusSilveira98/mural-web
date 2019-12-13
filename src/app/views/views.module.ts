@@ -6,11 +6,13 @@ import { HomeComponent } from './home/home.component';
 import { ActivityComponent } from './activity/activity.component';
 import { SharedModule } from '../_shared/shared.module';
 import { ComponentsModule } from '../_components/components.module';
+import { KnowledgeComponent } from './knowledge/knowledge.component';
 
 @NgModule({
   declarations: [
     HomeComponent,
-    ActivityComponent
+    ActivityComponent,
+    KnowledgeComponent
   ],
   imports: [
     BrowserModule,

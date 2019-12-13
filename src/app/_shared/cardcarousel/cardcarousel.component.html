@@ -9,7 +9,7 @@
       <ngb-carousel [interval]="0" [showNavigationArrows]="false" [showNavigationIndicators]="false" #carousel>
         <ng-template ngbSlide *ngFor="let item of items">
           <div class="d-flex justify-content-center align-items-center">
-            <div class="card animations fadeInRight">
+            <div class="card cursor-pointer animations fadeInRight" (click)="onClickCard.emit(item)">
               <img [src]="item.image" class="card-img-top" alt="Random first slide">
               <div class="card-body" [ngStyle]="{backgroundColor: style ? style.elementsBackground : none}">
                 <h5 class="card-title font-20">{{item.title}}</h5>
@@ -30,7 +30,7 @@
       <ngb-carousel [interval]="0" [showNavigationIndicators]="false" [showNavigationArrows]="false">
         <ng-template ngbSlide *ngFor="let slide of slides; let i = index" [id]="i">
           <div class="d-flex justify-content-center align-items-center">
-            <div class="card animations fadeInRight" *ngFor="let item of slide">
+            <div class="card cursor-pointer animations fadeInRight" (click)="onClickCard.emit(item)" *ngFor="let item of slide">
               <img [src]="item.image" class="card-img-top" alt="Random first slide">
               <div class="card-body" [ngStyle]="{backgroundColor: style ? style.elementsBackground : 'blue'}">
                 <h5 class="card-title font-20">{{item.title}}</h5>

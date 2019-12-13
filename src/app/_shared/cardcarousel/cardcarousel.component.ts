@@ -13,9 +13,10 @@ export class CardCarouselComponent implements OnInit {
   @Input() page: number;
   @Input() style: Object;
   @Input() isMobile: boolean;
-  @Output() clickOnIndicator = new EventEmitter();
-  @Output() clickOnNext = new EventEmitter();
-  @Output() clickOnPrev = new EventEmitter();
+  @Output() onClickIndicator = new EventEmitter();
+  @Output() onClickNext = new EventEmitter();
+  @Output() onClickPrev = new EventEmitter();
+  @Output() onClickCard = new EventEmitter();
   @ViewChild('carousel', { static: false }) carousel: NgbCarousel;
   slides: any[] = [];
   indicators: any[] = [];
@@ -36,24 +37,24 @@ export class CardCarouselComponent implements OnInit {
   moveNext() {
     if (!this.isMobile) {
       if (+this.page !== +this.indicators.length)
-        this.clickOnNext.emit(this.page + 1);
+        this.onClickNext.emit(this.page + 1);
     } else {
       ++this.mobileCarouselCount;
       if (this.mobileCarouselCount !== this.totalItems && this.mobileCarouselCount === this.items.length)
-        this.clickOnNext.emit(this.page + 1);
+        this.onClickNext.emit(this.page + 1);
       else this.carousel.next();
     }
   }
   getPrev() {
     if (!this.isMobile) {
       if (this.page !== 1)
-        this.clickOnPrev.emit(this.page - 1);
+        this.onClickPrev.emit(this.page - 1);
     } else {
       this.carousel.prev();
     }
   }
   goToSlide(indicator) {
-    this.clickOnIndicator.emit(indicator)
+    this.onClickIndicator.emit(indicator)
   }
   paginateItems() {
     let j = -1;

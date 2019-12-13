@@ -279,7 +279,7 @@ export class HomeComponent extends AppComponent implements OnInit {
       )
     });
   }
-  onClickLink(item, route) {
+  changeRoute(route, item = null) {
     this.router.navigate([`/${route}`], { state: { data: item } })
   }
 }
