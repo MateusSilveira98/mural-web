@@ -1,1 +1,50 @@
-<p>knowledge works!</p>
+<section class="knowledge">
+  <h1 class='font-24' [ngStyle]="{color: styleConfig.primary.main}">Atividades para colaboração</h1>
+  <p class="font-15">
+    Este é um espaço para aprendizado em grupo. Aqui acontece a interação entre os participantes no Portal, pois cada
+    conteúdo pode receber comentários e contribuições.
+  </p>
+  <generaltable [style]="styleConfig" [isMobile]="isMobile" [config]="activityConfig"
+    (onChangePage)="getActivityByPage($event, totalActivitiesPerPage)"
+    (onChangeItemsPerPage)="totalActivitiesPerPage = $event; getActivityByPage(activityPage, totalActivitiesPerPage)"
+    (onClickLinkPropTable)="changeRoute('atividade', $event)">
+  </generaltable>
+  <h1 class="font-24" [ngStyle]="{color: styleConfig.primary.main}">Atividades recentes do conhecimento</h1>
+  <div class="comments" *ngIf="knowledge.activities && knowledge.activities.length > 0">
+    <ng-container *ngFor="let activity of knowledge.activities">
+      <ng-container *ngFor="let comment of activity.comments">
+        <div class="comment-card animations fadeInDown">
+          <header>
+            <div class="image">
+              <img [src]="comment.senderUrl" [alt]="comment.author">
+            </div>
+            <div class="title-comment-card">
+              <p class="name">
+                <span class="title">{{comment.author}}</span>
+                <span class="mr-1 ml-1">comentou em:</span>
+                <span class="title">{{activity.title}}</span>
+              </p>
+              <span class="time">{{comment.createdAt}}</span>
+            </div>
+          </header>
+          <div class="content">
+            <p class="text">{{comment.description}}</p>
+          </div>
+          <footer>
+            <div class="item" [ngStyle]="{color: styleConfig.secondary.main}">
+              <span class="mr-1">Relevância:</span>
+              <ng-container *ngFor="let rate of [1,2,3,4,5]">
+                <i class="fa" [ngClass]="comment.relevance >= rate ? {'fa-star': true} : {'fa-star-o': true} "></i>
+              </ng-container>
+              <a class="btn ml-4" [ngStyle]="styleConfig.primary.background">acessar conteúdo</a>
+            </div>
+          </footer>
+        </div>
+        <hr [ngStyle]="{borderColor: styleConfig.secondary.main}">
+      </ng-container>
+    </ng-container>
+  </div>
+  <p *ngIf="!knowledge.activities && !knowledge.activities.length > 0">
+    Nenhum resultado encontrado!
+  </p>
+</section>

@@ -16,8 +16,14 @@ export class Knowledge {
     this.id = id;
     this.title = title;
     this.image = image;
-    this.activities = activities;
-    this.activitiesTotal = activities.length || 0;
-    this.commentsTotal = activities.map(item => item.comments.length).reduce((accumulator, currentValue) => accumulator + currentValue);
+    if (activities) {
+      this.activities = activities;
+      this.activitiesTotal = activities.length;
+      this.commentsTotal = activities.map(item => item.comments.length).reduce((accumulator, currentValue) => accumulator + currentValue);
+    } else {
+      this.activities = [];
+      this.activitiesTotal = 0
+      this.commentsTotal = 0
+    }
   }
 }
