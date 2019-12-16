@@ -31,8 +31,8 @@
           [ngStyle]="{backgroundColor: showAnswer ? style.secondary.main : style.primary.main, color: howAnswer ? style.secondary.background.color : style.primary.background.color}">responder</a>
         <span class="font-14" [ngStyle]="{color: style.secondary.main}">{{comment.answers.length}} resposta</span>
       </div>
-      <div class="item font-14" [ngStyle]="{color: style.primary.main}">
-        <span>Relevâcia:</span>
+      <div class="item font-14 position-relative" [ngStyle]="{color: style.primary.main}">
+        <span>Relevância:</span>
         <div class="d-flex align-items-center justify-content-between position-relative">
           <ng-container *ngFor="let rate of [1,2,3,4,5]">
             <i (mouseover)="onHoverRate = rate; showTooltipRate = true" (click)="rateComment(rate, comment.relevance)"
@@ -55,8 +55,43 @@
         <span [ngStyle]="{color: style.secondary.main}">{{comment.answers.length}} opinaram</span>
         <div class="pipe" [ngStyle]="{color: style.secondary.main}"></div>
         <a class="btn font-16" [ngStyle]="style.primary.background">curtir</a>
-        <span
+        <span (click)="showTooltipLike = !showTooltipLike"
           [ngStyle]="{color:  totalLikes === 0 ? style.secondary.main : style.primary.main}">{{totalLikes === 0 ? 'Seja o primeiro a curtir' : totalLikes + ' curtiram'}}</span>
+        <div class="like-tooltip" *ngIf="showTooltipLike">
+          <span class="font-12">Curtiram</span>
+          <div class="users">
+            <ng-container *ngFor="let user of users.slice(0, 5); let i = index">
+              <div class="image">
+                <img [src]="user.image" [alt]="user.name">
+              </div>
+            </ng-container>
+            <div class="font-18 plus" [ngStyle]="style.primary.background"
+              (click)="modalService.open(content, { centered: true, size: 'lg', scrollable: true });">
+              <i class="fa fa-plus"></i>
+            </div>
+          </div>
+          <ng-template #content let-modal>
+            <div class="modal-header">
+              <h4 class="modal-title" [ngStyle]="{color: style.primary.main}">Curtiram ({{users.length}})</h4>
+            </div>
+            <div class="modal-body">
+              <div class="users">
+                <ng-container *ngFor="let user of users">
+                  <div class="user">
+                    <div class="image">
+                      <img [src]="user.image" [alt]="user.name">
+                    </div>
+                    <span class="title">{{user.name}}</span>
+                  </div>
+                </ng-container>
+              </div>
+            </div>
+            <div class="modal-footer justify-content-center">
+              <a class="btn" [ngStyle]="style.primary.background"
+                (click)="modal.close('Close click'); showTooltipLike = false">Fechar</a>
+            </div>
+          </ng-template>
+        </div>
       </div>
     </footer>
     <div class="answer" *ngIf="showAnswer">
