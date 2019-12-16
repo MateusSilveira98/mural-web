@@ -19,12 +19,15 @@
               <img [src]="comment.senderUrl" [alt]="comment.author">
             </div>
             <div class="title-comment-card">
-              <p class="name">
+              <p>
                 <span class="title">{{comment.author}}</span>
-                <span class="mr-1 ml-1">comentou em:</span>
-                <span class="title">{{activity.title}}</span>
               </p>
-              <span class="time">{{comment.createdAt}}</span>
+              <p>
+                <span>
+                  comentou em: <span class="title">{{activity.title}}</span>
+                </span>
+              </p>
+              <span class="font-12" [ngStyle]="{color: styleConfig.secondary.main}">{{comment.createdAt}}</span>
             </div>
           </header>
           <div class="content">

@@ -33,13 +33,24 @@
       </div>
       <div class="item font-14" [ngStyle]="{color: style.primary.main}">
         <span>Relevâcia:</span>
-        <div class="d-flex align-items-center justify-content-between">
+        <div class="d-flex align-items-center justify-content-between position-relative">
           <ng-container *ngFor="let rate of [1,2,3,4,5]">
-            <i (mouseover)="onHoverRate = rate" (click)="rateComment(rate, comment.relevance)"
-              (mouseleave)="onHoverRate = 0"
+            <i (mouseover)="onHoverRate = rate; showTooltipRate = true" (click)="rateComment(rate, comment.relevance)"
+              (mouseleave)="onHoverRate = 0; showTooltipRate = false"
               [ngClass]="rate <= comment.relevance || onHoverRate >= rate ? 'fa fa-star cursor-pointer' : 'fa fa-star-o  cursor-pointer'"></i>
           </ng-container>
           <span class="font-10" [ngStyle]="{color: style.secondary.main}">({{comment.relevance}})</span>
+          <div class="rate-tooltip" *ngIf="showTooltipRate">
+            <span class="font-12">Avaliações</span>
+            <ng-container *ngFor="let rateType of [1,2,3,4,5]">
+              <div class="rates">
+                <ng-container *ngFor="let rate of [5,4,3,2,1]">
+                  <i class="fa font-12" [ngClass]="rate >= rateType ? {'fa-star': true} : {'fa-star-o': true}"></i>
+                </ng-container>
+                <span class="font-11 ml-2" [ngStyle]="{color: style.secondary.main}">131</span>
+              </div>
+            </ng-container>
+          </div>
         </div>
         <span [ngStyle]="{color: style.secondary.main}">{{comment.answers.length}} opinaram</span>
         <div class="pipe" [ngStyle]="{color: style.secondary.main}"></div>

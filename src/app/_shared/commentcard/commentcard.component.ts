@@ -15,11 +15,13 @@ export class CommentCardComponent implements OnInit {
   totalOpinions: number = 0;
   totalLikes: number = 0;
   onHoverRate: number = 0;
+  showTooltipRate: boolean = false;
   constructor() { }
 
   ngOnInit() {
   }
   rateComment(rate, relevance) {
     this.comment.relevance = rate === relevance ? 0 : rate;
+    this.showTooltipRate = true;
   }
 }

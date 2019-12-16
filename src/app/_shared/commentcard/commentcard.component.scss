@@ -30,7 +30,6 @@ header {
         position: absolute;
         top: 2.1em;
       }
-      
     }
   }
   .check {
@@ -106,4 +105,13 @@ header {
     padding: 1em;
     border: 2px solid;
   }
+}
+
+.rate-tooltip {
+  padding: 0.5em;
+  position: absolute;
+  width: 8em;
+  border: 1px solid;
+  background: white;
+  top: 1em;
 }
