@@ -22,7 +22,7 @@ export class HomeComponent extends AppComponent implements OnInit {
   totalKnowledges: number = 12;
   knowledges: Knowledge[] = [];
   knowledgePage: number = 1;
-
+  loadingCarousel: boolean = false;
   activityConfig: GeneralTableConfig = new GeneralTableConfig();
   commentsConfig: GeneralTableConfig = new GeneralTableConfig();
   mockId: number = 1;
@@ -214,6 +214,10 @@ export class HomeComponent extends AppComponent implements OnInit {
     this.getKnowledgesByPage(this.knowledgePage);
     this.getCommentsByPage(this.commentsPage, this.totalCommentsPerPage);
     this.getActivityByPage(this.activityPage, this.totalActivitiesPerPage);
+    this.loadingCarousel = true;
+    setTimeout(() => {
+      this.loadingCarousel = false;
+    }, 5000);
   }
   getKnowledgesByPage(page) {
     this.knowledgePage = page;
