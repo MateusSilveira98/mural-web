@@ -9,6 +9,7 @@ export class GeneralTableComponent implements OnInit {
   @Input() config: GeneralTableConfig = new GeneralTableConfig();
   @Input() style: Object;
   @Input() isMobile: boolean = false;
+  @Input() loading: boolean = false;
   @Output() onChangePage = new EventEmitter();
   @Output() onChangeItemsPerPage = new EventEmitter();
   @Output() onClickHTMLPropTable = new EventEmitter();
@@ -20,7 +21,9 @@ export class GeneralTableComponent implements OnInit {
   }
   ngOnChanges(changes: SimpleChanges) {
     const config: SimpleChange = changes.config;
-    this.config = config.currentValue;
+    const loading: SimpleChange = changes.loading;
+    this.config = config ? config.currentValue : this.config;
+    this.loading = loading ? loading.currentValue : this.loading;
   }
   changePage(page) {
     this.onChangePage.emit(page);

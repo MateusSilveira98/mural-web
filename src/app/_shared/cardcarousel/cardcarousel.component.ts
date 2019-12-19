@@ -8,11 +8,12 @@ import { NgbCarousel } from '@ng-bootstrap/ng-bootstrap';
 })
 export class CardCarouselComponent implements OnInit {
   @Input() items: any[] = [];
-  @Input() itemsPerPage: number;
-  @Input() totalItems: number;
-  @Input() page: number;
+  @Input() itemsPerPage: number = 2;
+  @Input() totalItems: number = 5;
+  @Input() page: number = 1;
   @Input() style: Object;
   @Input() isMobile: boolean;
+  @Input() loading: boolean = false;
   @Output() onClickIndicator = new EventEmitter();
   @Output() onClickNext = new EventEmitter();
   @Output() onClickPrev = new EventEmitter();
@@ -29,9 +30,11 @@ export class CardCarouselComponent implements OnInit {
     const items: SimpleChange = changes.items;
     const page: SimpleChange = changes.page;
     const totalItems: SimpleChange = changes.totalItems;
-    this.items = items ? items.currentValue : [];
+    const loading: SimpleChange = changes.loading;
+    this.loading = loading ? loading.currentValue : this.loading;
+    this.items = items ? items.currentValue : this.items;
     this.totalItems = totalItems ? totalItems.currentValue : this.totalItems;
-    this.page = +page.currentValue;
+    this.page =  page ? +page.currentValue : this.page;
     this.paginateItems();
   }
   moveNext() {

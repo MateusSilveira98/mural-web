@@ -40,7 +40,7 @@
       color: #004387;
     }
     &.disabled .page-link {
-      color: #787878!important;
+      color: #787878 !important;
     }
     &:nth-last-child(2) {
       .page-link {
@@ -71,5 +71,28 @@
   margin-right: 0.5em;
   img {
     width: 150px;
+  }
+}
+.background-masker {
+  &.header,
+  &.row-1,
+  &.row-2,
+  &.row-3 {
+    top: 1em;
+    height: 47px;
+    left: 2.5em;
+    right: 2.5em;
+  }
+  &.row-1,
+  &.row-2,
+  &.row-3 {
+    top: 5em;
+    height: 55px;
+  }
+  &.row-2 {
+    top: 9.5em;
+  }
+  &.row-3 {
+    top: 14em;
   }
 }

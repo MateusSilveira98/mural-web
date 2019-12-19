@@ -3,25 +3,11 @@
     <h1 class="font-24" [ngStyle]="{color: styleConfig && styleConfig.primary && styleConfig.primary.main}">
       Meus Conhecimentos
     </h1>
-    <cardcarousel [items]="knowledges" *ngIf="!loadingCarousel" [isMobile]="isMobile" [itemsPerPage]="4" [totalItems]="totalKnowledges"
+    <cardcarousel [items]="knowledges" [loading]="loadingCarousel" [isMobile]="isMobile" [itemsPerPage]="4" [totalItems]="totalKnowledges"
       [page]="knowledgePage" [style]="styleConfig" (onClickPrev)="getKnowledgesByPage($event)"
       (onClickNext)="getKnowledgesByPage($event)" (onClickIndicator)="getKnowledgesByPage($event)"
       (onClickCard)="changeRoute('conhecimento', $event)">
     </cardcarousel>
-    <div class="timeline-wrapper" *ngIf="loadingCarousel">
-      <div class="timeline-item">
-        <div class="animated-background">
-          <div class="background-masker header"></div>
-          <div class="background-masker card-1"></div>
-          <div class="background-masker card-2"></div>
-          <div class="background-masker card-3"></div>
-          <div class="background-masker card-4"></div>
-          <div class="background-masker ball-1"></div>
-          <div class="background-masker ball-2"></div>
-          <div class="background-masker ball-3"></div>
-        </div>
-      </div>
-    </div>
   </div>
   <div class="mb-4">
     <h1 class="font-24" [ngStyle]="{color: styleConfig && styleConfig.primary && styleConfig.primary.main}">
@@ -30,7 +16,7 @@
     <filter [filters]="activityFilters" [style]="styleConfig" [isMobile]="isMobile" (onFilter)="filter($event)">
     </filter>
     <div class="margin-top-4">
-      <generaltable [style]="styleConfig" [isMobile]="isMobile" [config]="activityConfig"
+      <generaltable [style]="styleConfig" [loading]="loadingCarousel" [isMobile]="isMobile" [config]="activityConfig"
         (onChangePage)="getActivityByPage($event, totalActivitiesPerPage)"
         (onChangeItemsPerPage)="totalActivitiesPerPage = $event; getActivityByPage(activityPage, totalActivitiesPerPage)"
         (onClickLinkPropTable)="changeRoute('atividade', $event)">
@@ -40,10 +26,10 @@
   <div class="mb-4">
     <h1 class="font-24" [ngStyle]="{color: styleConfig && styleConfig.primary && styleConfig.primary.main}">Comentários
     </h1>
-    <filter [filters]="commentsFilters" [style]="styleConfig" [isMobile]="isMobile" (onFilter)="filter($event)">
+    <filter [filters]="commentsFilters"  [style]="styleConfig" [isMobile]="isMobile" (onFilter)="filter($event)">
     </filter>
     <div class="margin-top-4">
-      <generaltable [style]="styleConfig" [isMobile]="isMobile" [config]="commentsConfig"
+      <generaltable [style]="styleConfig" [loading]="loadingCarousel" [isMobile]="isMobile" [config]="commentsConfig"
         (onChangePage)="getCommentsByPage($event, totalCommentsPerPage)"
         (onChangeItemsPerPage)="totalCommentsPerPage = $event; getCommentsByPage(commentsPage, totalCommentsPerPage)"
         (onClickLinkPropTable)="changeRoute('comentario', $event)">

@@ -1,77 +1,90 @@
-<table class="desktop-filtertable width-100" *ngIf="config && config.items">
-  <thead>
-    <tr>
-      <ng-container *ngFor="let column of config.columns">
-        <th scope="col" [ngStyle]="{color: style.primary.main || 'black', borderColor: style.details}" class="font-12">
-          {{column}}</th>
-      </ng-container>
-    </tr>
-  </thead>
-  <tbody *ngIf="config.items.length != 0">
-    <tr scope="row" *ngFor="let item of config.items">
-      <td *ngFor="let prop of config.props" class="font-weight-bold animations fadeInDown font-14"
-        [ngStyle]="{backgroundColor: style.elementsBackground, color: prop.bold ? style.text : style.secondary.main}">
-        <span *ngIf="prop.type == 'string'">{{item[prop.name]}}</span>
-        <span
-          *ngIf="prop.type == 'boolean'">{{item[prop.name] ? config.boolValuePropTrue : config.boolValuePropFalse}}</span>
-        <span *ngIf="prop.type == 'object'">{{item[prop.name][prop.attribute]}}</span>
-        <div *ngIf="prop.type == 'image'" class='d-flex align-items-center w-100'>
-          <div class="image margin-right-1">
-            <img [src]="item.url" [alt]="item[prop.name]">
+<ng-container *ngIf="!loading">
+  <table class="desktop-filtertable width-100" *ngIf="config && config.items">
+    <thead>
+      <tr>
+        <ng-container *ngFor="let column of config.columns">
+          <th scope="col" [ngStyle]="{color: style.primary.main || 'black', borderColor: style.details}" class="font-12">
+            {{column}}</th>
+        </ng-container>
+      </tr>
+    </thead>
+    <tbody *ngIf="config.items.length != 0">
+      <tr scope="row" *ngFor="let item of config.items">
+        <td *ngFor="let prop of config.props" class="font-weight-bold animations fadeInDown font-14"
+          [ngStyle]="{backgroundColor: style.elementsBackground, color: prop.bold ? style.text : style.secondary.main}">
+          <span *ngIf="prop.type == 'string'">{{item[prop.name]}}</span>
+          <span
+            *ngIf="prop.type == 'boolean'">{{item[prop.name] ? config.boolValuePropTrue : config.boolValuePropFalse}}</span>
+          <span *ngIf="prop.type == 'object'">{{item[prop.name][prop.attribute]}}</span>
+          <div *ngIf="prop.type == 'image'" class='d-flex align-items-center w-100'>
+            <div class="image margin-right-1">
+              <img [src]="item.url" [alt]="item[prop.name]">
+            </div>
+            <span>{{item[prop.name]}}</span>
           </div>
-          <span>{{item[prop.name]}}</span>
-        </div>
-        <span *ngIf="prop.type == 'link'">
-          <a class='btn cursor-pointer' [ngStyle]="style.primary.background" (click)="onClickLinkPropTable.emit(item)">
-            {{prop.label}}
-          </a>
-        </span>
-        <span *ngIf="prop.type == 'html'" (click)="onClickHTMLPropTable.emit(item)">
-          <div [innerHtml]="prop.html"></div>
-        </span>
-        <span *ngIf="prop.type == 'rating'">
-          <i *ngFor="let rating of [1, 2, 3, 4, 5]"
-            [ngClass]="item[prop.name] >= rating ? 'fa fa-star' : 'fa fa-star-o'"></i>
-        </span>
-      </td>
-    </tr>
-  </tbody>
-  <tbody *ngIf="config.items.length == 0">
-    <tr scope="col">
-      <td [attr.colspan]="config.props.length + 1" class="no-data-available">
-        {{emptyMessage || 'Não há registros'}}</td>
-    </tr>
-  <tbody>
-  <tfoot>
-    <tr>
-      <td [attr.colspan]="config.props.length + 1">
-        <div class="d-flex align-items-end justify-content-center foot" [ngStyle]="{color: style.elementsBackground}">
-          <ng-container *ngIf="config.totalItems > config.itemsPerPage">
-            <ngb-pagination [(page)]="config.page" [pageSize]="config.itemsPerPage" [collectionSize]="config.totalItems"
-              (pageChange)="changePage($event)" style="width: 71%;">
-              <ng-template ngbPaginationPrevious>
-                <i class="fa fa-chevron-left"></i>
-              </ng-template>
-              <ng-template ngbPaginationNext>
-                <i class="fa fa-chevron-right"></i>
-              </ng-template>
-              <ng-template ngbPaginationNumber let-p>
-                <span class="pagination-number">{{p}}</span>
-              </ng-template>
-            </ngb-pagination>
-          </ng-container>
-          <div class="font-12 width-50"
-            [ngClass]="config.totalItems > config.itemsPerPage ? 'text-right' : 'text-center'"
-            [ngStyle]="{color: style.secondary.main}">
-            <label class='mr-1'>EXIBIR</label>
-            <select class="mr-1" (change)='onChangeItemsPerPage.emit($event.target.value);'
+          <span *ngIf="prop.type == 'link'">
+            <a class='btn cursor-pointer' [ngStyle]="style.primary.background" (click)="onClickLinkPropTable.emit(item)">
+              {{prop.label}}
+            </a>
+          </span>
+          <span *ngIf="prop.type == 'html'" (click)="onClickHTMLPropTable.emit(item)">
+            <div [innerHtml]="prop.html"></div>
+          </span>
+          <span *ngIf="prop.type == 'rating'">
+            <i *ngFor="let rating of [1, 2, 3, 4, 5]"
+              [ngClass]="item[prop.name] >= rating ? 'fa fa-star' : 'fa fa-star-o'"></i>
+          </span>
+        </td>
+      </tr>
+    </tbody>
+    <tbody *ngIf="config.items.length == 0">
+      <tr scope="col">
+        <td [attr.colspan]="config.props.length + 1" class="no-data-available">
+          {{emptyMessage || 'Não há registros'}}</td>
+      </tr>
+    <tbody>
+    <tfoot>
+      <tr>
+        <td [attr.colspan]="config.props.length + 1">
+          <div class="d-flex align-items-end justify-content-center foot" [ngStyle]="{color: style.elementsBackground}">
+            <ng-container *ngIf="config.totalItems > config.itemsPerPage">
+              <ngb-pagination [(page)]="config.page" [pageSize]="config.itemsPerPage" [collectionSize]="config.totalItems"
+                (pageChange)="changePage($event)" style="width: 71%;">
+                <ng-template ngbPaginationPrevious>
+                  <i class="fa fa-chevron-left"></i>
+                </ng-template>
+                <ng-template ngbPaginationNext>
+                  <i class="fa fa-chevron-right"></i>
+                </ng-template>
+                <ng-template ngbPaginationNumber let-p>
+                  <span class="pagination-number">{{p}}</span>
+                </ng-template>
+              </ngb-pagination>
+            </ng-container>
+            <div class="font-12 width-50"
+              [ngClass]="config.totalItems > config.itemsPerPage ? 'text-right' : 'text-center'"
               [ngStyle]="{color: style.secondary.main}">
-              <option *ngFor="let option of config.itemsPerPageList" [value]="option">{{option}}</option>
-            </select>
-            <label>ITENS</label>
+              <label class='mr-1'>EXIBIR</label>
+              <select class="mr-1" (change)='onChangeItemsPerPage.emit($event.target.value);'
+                [ngStyle]="{color: style.secondary.main}">
+                <option *ngFor="let option of config.itemsPerPageList" [value]="option">{{option}}</option>
+              </select>
+              <label>ITENS</label>
+            </div>
           </div>
-        </div>
-      </td>
-    </tr>
-  </tfoot>
-</table>
+        </td>
+      </tr>
+    </tfoot>
+  </table>
+</ng-container>
+
+<div class="loading-wrapper" *ngIf="loading">
+  <div class="loading-item">
+    <div class="animated-background">
+      <div class="background-masker header"></div>
+      <div class="background-masker row-1"></div>
+      <div class="background-masker row-2"></div>
+      <div class="background-masker row-3"></div>
+    </div>
+  </div>
+</div>

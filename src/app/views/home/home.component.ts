@@ -45,7 +45,7 @@ export class HomeComponent extends AppComponent implements OnInit {
       `https://picsum.photos/id/${++this.mockId}/900/500`,
       'Missão Saiba Mais Game DesEnvolVer Transformação Digital',
       'Gestão T.I',
-      this.randomDate(new Date(2013, 0, 1), new Date()),
+      moment(new Date()).fromNow(),
       Math.floor(Math.random() * 5),
       null,
       false,
@@ -217,7 +217,7 @@ export class HomeComponent extends AppComponent implements OnInit {
     this.loadingCarousel = true;
     setTimeout(() => {
       this.loadingCarousel = false;
-    }, 5000);
+    }, 12000);
   }
   getKnowledgesByPage(page) {
     this.knowledgePage = page;
