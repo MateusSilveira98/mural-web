@@ -74,20 +74,38 @@
   }
 }
 .background-masker {
-  &.header,
-  &.row-1,
-  &.row-2,
-  &.row-3 {
-    top: 1em;
-    height: 47px;
-    left: 2.5em;
-    right: 2.5em;
+  &.header {
+    top: 4em;
+    height: 5px;
+    width: 100%;
   }
   &.row-1,
   &.row-2,
   &.row-3 {
     top: 5em;
     height: 55px;
+    width: 100%;
+    border-radius: 4px;
+  }
+  &.label-1,
+  &.label-2,
+  &.label-3,
+  &.label-4 {
+    top: 2em;
+    height: 10px;
+    width: 350px;
+  }
+  &.label-2 {
+    left: 30em;
+    width: 120px;
+  }
+  &.label-3 {
+    left: 43em;
+    width: 150px;
+  }
+  &.label-4 {
+    left: 56em;
+    width: 150px;
   }
   &.row-2 {
     top: 9.5em;

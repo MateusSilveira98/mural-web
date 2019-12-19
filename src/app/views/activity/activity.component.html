@@ -17,11 +17,11 @@
   <filter [style]="styleConfig" [filters]="commentsFilters" [isSubmit]="true"></filter>
   <div class="mt-4">
     <ng-container *ngFor="let comment of comments">
-      <commentcard [style]="styleConfig" [isMobile]="isMobile" [comment]="comment"></commentcard>
+      <commentcard [loading]="loading" [style]="styleConfig" [isMobile]="isMobile" [comment]="comment"></commentcard>
       <ng-container *ngIf="comment?.answers?.length > 0">
         <hr class="ml-5">
         <div class="ml-5" *ngFor="let answer of comment.answers">
-          <commentcard [style]="styleConfig" [isMobile]="isMobile" [comment]="answer"></commentcard>
+          <commentcard [loading]="loading" [style]="styleConfig" [isMobile]="isMobile" [comment]="answer"></commentcard>
         </div>
         <hr class="ml-5">
       </ng-container>

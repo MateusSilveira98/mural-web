@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, SimpleChanges, SimpleChange } from '@angular/core';
 import { Comments } from 'src/app/_models/comments.model';
 import { User } from 'src/app/_models/users.model';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -11,6 +11,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 export class CommentCardComponent implements OnInit {
   @Input() style: Object;
   @Input() isMobile: boolean = false;
+  @Input() loading: boolean = false;
   @Input() comment: Comments = new Comments();
   totalAnswers: number = 0;
   averageRate: number = 0;
@@ -55,6 +56,10 @@ export class CommentCardComponent implements OnInit {
   constructor(private modalService: NgbModal) { }
 
   ngOnInit() {
+  }
+  ngOnChanges(changes: SimpleChanges) {
+    const loading: SimpleChange = changes.loading;
+    this.loading = loading ? loading.currentValue : this.loading;
   }
   rateComment(rate, relevance) {
     this.comment.relevance = rate === relevance ? 0 : rate;

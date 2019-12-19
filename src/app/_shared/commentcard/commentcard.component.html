@@ -1,4 +1,4 @@
-<div class="commentcard">
+<div class="commentcard" *ngIf="!loading">
   <header [ngClass]="{'is-tutor': comment.isTutor}" [ngStyle]="{borderColor: style.featured}">
     <div class="titlename">
       <div class="image" [ngClass]="{'is-tutor': comment.isTutor, 'mr-4': !comment.isTutor}"
@@ -101,6 +101,24 @@
         <a class="btn mr-4" [ngStyle]="style.primary.outline" (click)="showAnswer = false"> Cancelar </a>
         <a class="btn" [ngStyle]="style.primary.background" (click)="showAnswer = false"> Publicar </a>
       </div>
+    </div>
+  </div>
+</div>
+
+<div class="loading-wrapper" *ngIf="loading">
+  <div class="loading-item">
+    <div class="animated-background">
+      <div class="background-masker image"></div>
+      <div class="background-masker title"></div>
+      <div class="background-masker subtitle"></div>
+      <div class="background-masker label"></div>
+      <div class="background-masker checkbox"></div>
+      <div class="background-masker text-1"></div>
+      <div class="background-masker text-2"></div>
+      <div class="background-masker text-3"></div>
+      <div class="background-masker text-4"></div>
+      <div class="background-masker footer-1"></div>
+      <div class="background-masker footer-2"></div>
     </div>
   </div>
 </div>

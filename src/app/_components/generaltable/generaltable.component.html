@@ -3,14 +3,15 @@
     <thead>
       <tr>
         <ng-container *ngFor="let column of config.columns">
-          <th scope="col" [ngStyle]="{color: style.primary.main || 'black', borderColor: style.details}" class="font-12">
+          <th scope="col" [ngStyle]="{color: style.primary.main || 'black', borderColor: style.details}"
+            class="font-12">
             {{column}}</th>
         </ng-container>
       </tr>
     </thead>
     <tbody *ngIf="config.items.length != 0">
       <tr scope="row" *ngFor="let item of config.items">
-        <td *ngFor="let prop of config.props" class="font-weight-bold animations fadeInDown font-14"
+        <td *ngFor="let prop of config.props" class="font-weight-bold font-14"
           [ngStyle]="{backgroundColor: style.elementsBackground, color: prop.bold ? style.text : style.secondary.main}">
           <span *ngIf="prop.type == 'string'">{{item[prop.name]}}</span>
           <span
@@ -23,7 +24,8 @@
             <span>{{item[prop.name]}}</span>
           </div>
           <span *ngIf="prop.type == 'link'">
-            <a class='btn cursor-pointer' [ngStyle]="style.primary.background" (click)="onClickLinkPropTable.emit(item)">
+            <a class='btn cursor-pointer' [ngStyle]="style.primary.background"
+              (click)="onClickLinkPropTable.emit(item)">
               {{prop.label}}
             </a>
           </span>
@@ -48,8 +50,8 @@
         <td [attr.colspan]="config.props.length + 1">
           <div class="d-flex align-items-end justify-content-center foot" [ngStyle]="{color: style.elementsBackground}">
             <ng-container *ngIf="config.totalItems > config.itemsPerPage">
-              <ngb-pagination [(page)]="config.page" [pageSize]="config.itemsPerPage" [collectionSize]="config.totalItems"
-                (pageChange)="changePage($event)" style="width: 71%;">
+              <ngb-pagination [(page)]="config.page" [pageSize]="config.itemsPerPage"
+                [collectionSize]="config.totalItems" (pageChange)="changePage($event)" style="width: 71%;">
                 <ng-template ngbPaginationPrevious>
                   <i class="fa fa-chevron-left"></i>
                 </ng-template>
@@ -79,12 +81,14 @@
 </ng-container>
 
 <div class="loading-wrapper" *ngIf="loading">
-  <div class="loading-item">
-    <div class="animated-background">
-      <div class="background-masker header"></div>
-      <div class="background-masker row-1"></div>
-      <div class="background-masker row-2"></div>
-      <div class="background-masker row-3"></div>
-    </div>
+  <div class="loading-item position-relative">
+    <div class="background-masker label-1"></div>
+    <div class="background-masker label-2"></div>
+    <div class="background-masker label-3"></div>
+    <div class="background-masker label-4"></div>
+    <div class="background-masker header"></div>
+    <div class="background-masker row-1"></div>
+    <div class="background-masker row-2"></div>
+    <div class="background-masker row-3"></div>
   </div>
 </div>

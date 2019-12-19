@@ -217,7 +217,7 @@ export class HomeComponent extends AppComponent implements OnInit {
     this.loadingCarousel = true;
     setTimeout(() => {
       this.loadingCarousel = false;
-    }, 12000);
+    }, 5000);
   }
   getKnowledgesByPage(page) {
     this.knowledgePage = page;
