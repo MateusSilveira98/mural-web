@@ -1,33 +1,33 @@
 .animations {
   &.fadeIn {
-    animation: fadein 1.5s;
-    -moz-animation: fadein 1.5s; /* Firefox */
-    -webkit-animation: fadein 1.5s; /* Safari and Chrome */
-    -o-animation: fadein 1.5s; /* Opera */
+    animation: fadein 0.7s;
+    -moz-animation: fadein 0.7s; /* Firefox */
+    -webkit-animation: fadein 0.7s; /* Safari and Chrome */
+    -o-animation: fadein 0.7s; /* Opera */
   }
   &.fadeInRight {
-    animation: fadeInRight 1.5s;
-    -moz-animation: fadeInRight 1.5s; /* Firefox */
-    -webkit-animation: fadeInRight 1.5s; /* Safari and Chrome */
-    -o-animation: fadeInRight 1.5s; /* Opera */
+    animation: fadeInRight 0.7s;
+    -moz-animation: fadeInRight 0.7s; /* Firefox */
+    -webkit-animation: fadeInRight 0.7s; /* Safari and Chrome */
+    -o-animation: fadeInRight 0.7s; /* Opera */
   }
   &.fadeInLeft {
-    animation: fadeInLeft 1.5s;
-    -moz-animation: fadeInLeft 1.5s; /* Firefox */
-    -webkit-animation: fadeInLeft 1.5s; /* Safari and Chrome */
-    -o-animation: fadeInLeft 1.5s; /* Opera */
+    animation: fadeInLeft 0.7s;
+    -moz-animation: fadeInLeft 0.7s; /* Firefox */
+    -webkit-animation: fadeInLeft 0.7s; /* Safari and Chrome */
+    -o-animation: fadeInLeft 0.7s; /* Opera */
   }
   &.fadeInDown {
-    animation: fadeInDown 1.5s;
-    -moz-animation: fadeInDown 1.5s; /* Firefox */
-    -webkit-animation: fadeInDown 1.5s; /* Safari and Chrome */
-    -o-animation: fadeInDown 1.5s; /* Opera */
+    animation: fadeInDown 0.7s;
+    -moz-animation: fadeInDown 0.7s; /* Firefox */
+    -webkit-animation: fadeInDown 0.7s; /* Safari and Chrome */
+    -o-animation: fadeInDown 0.7s; /* Opera */
   }
   &.fadeInUp {
-    animation: fadeInDown 1.5s;
-    -moz-animation: fadeInDown 1.5s; /* Firefox */
-    -webkit-animation: fadeInDown 1.5s; /* Safari and Chrome */
-    -o-animation: fadeInDown 1.5s; /* Opera */
+    animation: fadeInDown 0.7s;
+    -moz-animation: fadeInDown 0.7s; /* Firefox */
+    -webkit-animation: fadeInDown 0.7s; /* Safari and Chrome */
+    -o-animation: fadeInDown 0.7s; /* Opera */
   }
 }
 

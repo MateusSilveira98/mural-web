@@ -11,7 +11,7 @@
     </thead>
     <tbody *ngIf="config.items.length != 0">
       <tr scope="row" *ngFor="let item of config.items">
-        <td *ngFor="let prop of config.props" class="font-weight-bold font-14"
+        <td *ngFor="let prop of config.props" class="font-weight-bold font-14 animations fadeInDown"
           [ngStyle]="{backgroundColor: style.elementsBackground, color: prop.bold ? style.text : style.secondary.main}">
           <span *ngIf="prop.type == 'string'">{{item[prop.name]}}</span>
           <span
