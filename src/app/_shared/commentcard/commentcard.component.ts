@@ -2,7 +2,6 @@ import { Component, OnInit, Input, SimpleChanges, SimpleChange } from '@angular/
 import { Comments } from 'src/app/_models/comments.model';
 import { User } from 'src/app/_models/users.model';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-
 @Component({
   selector: 'commentcard',
   templateUrl: './commentcard.component.html',
@@ -13,6 +12,7 @@ export class CommentCardComponent implements OnInit {
   @Input() isMobile: boolean = false;
   @Input() loading: boolean = false;
   @Input() comment: Comments = new Comments();
+
   totalAnswers: number = 0;
   averageRate: number = 0;
   totalOpinions: number = 0;
@@ -21,7 +21,13 @@ export class CommentCardComponent implements OnInit {
   showTooltipRate: boolean = false;
   showTooltipLike: boolean = false;
   mockId: number = 1;
+  message: string = '';
   users: User[] = [
+    new User(
+      ++this.mockId,
+      'Thiago Ventura',
+      'assets/images/persona1.jpg'
+    ),
     new User(
       ++this.mockId,
       'Teresa Cristina',
@@ -29,33 +35,46 @@ export class CommentCardComponent implements OnInit {
     ),
     new User(
       ++this.mockId,
-      'Teresa Cristina',
+      'Gilmar Mendes',
       'assets/images/persona2.jpg'
     ),
     new User(
       ++this.mockId,
-      'Teresa Cristina',
+      'Jair Bolsonaro',
       'assets/images/persona3.jpg'
     ),
     new User(
       ++this.mockId,
-      'Teresa Cristina',
+      'Luiz Inácio Lula da Silva',
       'assets/images/persona4.jpg'
     ),
     new User(
       ++this.mockId,
-      'Teresa Cristina',
+      'Enéias Carneiro',
       'assets/images/persona5.jpg'
     ),
     new User(
       ++this.mockId,
-      'Teresa Cristina',
+      'Atilla Jacomussi',
       'assets/images/persona6.jpg'
     )
-  ]
-  constructor(private modalService: NgbModal) { }
+  ];
+  editorData: any;
+  editorConfig = {
+    extraPlugins: ['mentions', 'autocomplete', 'textmatch', 'ajax'],
+    mentions: [
+      {
+        feed: this.users.map(item => item.name),
+        minChars: 0
+      }
+    ],
+    outputTemplate: '<span class="font-weight-bold">{name}</span>'
+  }
+  constructor(private modalService: NgbModal) {
+  }
 
   ngOnInit() {
+    console.log(this.message)
   }
   ngOnChanges(changes: SimpleChanges) {
     const loading: SimpleChange = changes.loading;
@@ -65,5 +84,4 @@ export class CommentCardComponent implements OnInit {
     this.comment.relevance = rate === relevance ? 0 : rate;
     this.showTooltipRate = true;
   }
-  
 }

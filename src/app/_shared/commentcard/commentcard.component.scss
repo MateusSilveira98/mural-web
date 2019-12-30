@@ -242,3 +242,7 @@ header {
     height: 30px;
   }
 }
+::ng-deep #cke_1_bottom,
+::ng-deep #cke_1_top {
+  display: none;
+}

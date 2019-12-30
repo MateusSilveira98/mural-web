@@ -28,9 +28,15 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "src/app/_helpers/mentions/autocomplete/skins/default.css"
             ],
-            "scripts": []
+            "scripts": [
+              "src/app/_helpers/mentions/plugin.js",
+              "src/app/_helpers/mentions/autocomplete/plugin.js",
+              "src/app/_helpers/mentions/textmatch/plugin.js",
+              "src/app/_helpers/mentions/ajax/plugin.js"
+            ]
           },
           "configurations": {
             "production": {

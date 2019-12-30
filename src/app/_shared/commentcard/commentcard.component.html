@@ -96,7 +96,7 @@
     </footer>
     <div class="answer" *ngIf="showAnswer">
       <p class="font-18 font-weight-bold">Mensagem</p>
-      <textarea cols="30" rows="10" [ngStyle]="{borderColor: style.secondary.main}">{{comment.description}}</textarea>
+      <ckeditor [(ngModel)]="editorData" [config]="editorConfig"></ckeditor>
       <div class="d-flex justify-content-end align-items-center">
         <a class="btn mr-4" [ngStyle]="style.primary.outline" (click)="showAnswer = false"> Cancelar </a>
         <a class="btn" [ngStyle]="style.primary.background" (click)="showAnswer = false"> Publicar </a>

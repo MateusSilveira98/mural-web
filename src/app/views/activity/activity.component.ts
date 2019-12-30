@@ -69,7 +69,7 @@ export class ActivityComponent extends AppComponent implements OnInit {
     else this.activity = history.state.data;
     setTimeout(() => {
       this.loading = false;
-    }, 5000);
+    }, 2000);
   }
   changeDatepickerValue(event) {
     console.log(event)

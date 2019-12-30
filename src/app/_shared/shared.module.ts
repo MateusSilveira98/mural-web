@@ -3,10 +3,11 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CommonModule } from '@angular/common';
-
+import { CKEditorModule } from 'ckeditor4-angular';
 
 import { CardCarouselComponent } from './cardcarousel/cardcarousel.component';
 import { CommentCardComponent } from './commentcard/commentcard.component';
+
 @NgModule({
   declarations: [
     CardCarouselComponent,
@@ -16,7 +17,8 @@ import { CommentCardComponent } from './commentcard/commentcard.component';
     BrowserModule,
     FormsModule,
     NgbModule,
-    CommonModule
+    CommonModule,
+    CKEditorModule
   ],
   exports: [
     CardCarouselComponent,
