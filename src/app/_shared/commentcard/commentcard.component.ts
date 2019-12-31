@@ -1,7 +1,8 @@
-import { Component, OnInit, Input, SimpleChanges, SimpleChange } from '@angular/core';
+import { Component, OnInit, Input, SimpleChanges, SimpleChange, ViewChild, ElementRef } from '@angular/core';
 import { Comments } from 'src/app/_models/comments.model';
 import { User } from 'src/app/_models/users.model';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { CKEditor4, CKEditorModule, CKEditorComponent } from 'ckeditor4-angular';
 @Component({
   selector: 'commentcard',
   templateUrl: './commentcard.component.html',
@@ -12,7 +13,7 @@ export class CommentCardComponent implements OnInit {
   @Input() isMobile: boolean = false;
   @Input() loading: boolean = false;
   @Input() comment: Comments = new Comments();
-
+  @ViewChild('testId', { static: false }) editor: any;
   totalAnswers: number = 0;
   averageRate: number = 0;
   totalOpinions: number = 0;
@@ -61,20 +62,26 @@ export class CommentCardComponent implements OnInit {
   ];
   editorData: any;
   editorConfig = {
-    extraPlugins: ['mentions', 'autocomplete', 'textmatch', 'ajax'],
+    extraPlugins: ['mentions', 'autocomplete', 'textmatch', 'ajax', 'textwatcher', 'xml'],
     mentions: [
       {
         feed: this.users.map(item => item.name),
-        minChars: 0
+        minChars: 0,
+        outputTemplate: `<b>{name}</b> `
       }
-    ],
-    outputTemplate: '<span class="font-weight-bold">{name}</span>'
+    ]
   }
   constructor(private modalService: NgbModal) {
   }
 
   ngOnInit() {
-    console.log(this.message)
+  }
+  getEditorRef(editor) {
+    setTimeout( () => {
+      console.log(this.editor)
+      console.log(editor)
+    }, 1000
+    )
   }
   ngOnChanges(changes: SimpleChanges) {
     const loading: SimpleChange = changes.loading;
@@ -83,5 +90,8 @@ export class CommentCardComponent implements OnInit {
   rateComment(rate, relevance) {
     this.comment.relevance = rate === relevance ? 0 : rate;
     this.showTooltipRate = true;
+  }
+  showEditorData(editorData) {
+    console.log(editorData)
   }
 }

@@ -27,7 +27,7 @@
     </p>
     <footer>
       <div class="item">
-        <a class="btn mr-4 " (click)="showAnswer = true"
+        <a class="btn mr-4 " (click)="showAnswer = true; getEditorRef(editor)"
           [ngStyle]="{backgroundColor: showAnswer ? style.secondary.main : style.primary.main, color: howAnswer ? style.secondary.background.color : style.primary.background.color}">responder</a>
         <span class="font-14" [ngStyle]="{color: style.secondary.main}">{{comment.answers.length}} resposta</span>
       </div>
@@ -96,8 +96,8 @@
     </footer>
     <div class="answer" *ngIf="showAnswer">
       <p class="font-18 font-weight-bold">Mensagem</p>
-      <ckeditor [(ngModel)]="editorData" [config]="editorConfig"></ckeditor>
-      <div class="d-flex justify-content-end align-items-center">
+      <ckeditor #testId (change)="showEditorData(editorData)" [(ngModel)]="editorData" [config]="editorConfig"></ckeditor>
+      <div class="d-flex justify-content-end align-items-center mt-3">
         <a class="btn mr-4" [ngStyle]="style.primary.outline" (click)="showAnswer = false"> Cancelar </a>
         <a class="btn" [ngStyle]="style.primary.background" (click)="showAnswer = false"> Publicar </a>
       </div>

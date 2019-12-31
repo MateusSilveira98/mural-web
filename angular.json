@@ -35,7 +35,9 @@
               "src/app/_helpers/mentions/plugin.js",
               "src/app/_helpers/mentions/autocomplete/plugin.js",
               "src/app/_helpers/mentions/textmatch/plugin.js",
-              "src/app/_helpers/mentions/ajax/plugin.js"
+              "src/app/_helpers/mentions/textwatcher/plugin.js",
+              "src/app/_helpers/mentions/ajax/plugin.js",
+              "src/app/_helpers/mentions/xml/plugin.js"
             ]
           },
           "configurations": {
