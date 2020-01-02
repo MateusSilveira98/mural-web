@@ -66,9 +66,9 @@ export class CommentCardComponent implements OnInit {
         feed: this.users.map(item => item.name),
         minChars: 0,
         outputTemplate: `
-        <span style="font-weight:bold; padding: 0.5em 1em; background-color: #dce6f8; border-radius: 4px;">
-          {name}
-         </span>  
+          <strong> 
+            {name}
+          </strong>
          `
       }
     ]

@@ -242,7 +242,7 @@ header {
     height: 30px;
   }
 }
-::ng-deep #cke_1_bottom,
-::ng-deep #cke_1_top {
-  display: none;
+::ng-deep .cke_top.cke_reset_all,
+::ng-deep .cke_bottom.cke_reset_all {
+  display: none !important;
 }
