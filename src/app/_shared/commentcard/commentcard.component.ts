@@ -1,8 +1,7 @@
-import { Component, OnInit, Input, SimpleChanges, SimpleChange, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, Input, SimpleChanges, SimpleChange } from '@angular/core';
 import { Comments } from 'src/app/_models/comments.model';
 import { User } from 'src/app/_models/users.model';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { CKEditor4, CKEditorModule, CKEditorComponent } from 'ckeditor4-angular';
 @Component({
   selector: 'commentcard',
   templateUrl: './commentcard.component.html',
@@ -13,7 +12,6 @@ export class CommentCardComponent implements OnInit {
   @Input() isMobile: boolean = false;
   @Input() loading: boolean = false;
   @Input() comment: Comments = new Comments();
-  @ViewChild('testId', { static: false }) editor: any;
   totalAnswers: number = 0;
   averageRate: number = 0;
   totalOpinions: number = 0;
@@ -67,7 +65,11 @@ export class CommentCardComponent implements OnInit {
       {
         feed: this.users.map(item => item.name),
         minChars: 0,
-        outputTemplate: `<b>{name}</b> `
+        outputTemplate: `
+        <span style="font-weight:bold; padding: 0.5em 1em; background-color: #dce6f8; border-radius: 4px;">
+          {name}
+         </span>  
+         `
       }
     ]
   }
@@ -75,13 +77,6 @@ export class CommentCardComponent implements OnInit {
   }
 
   ngOnInit() {
-  }
-  getEditorRef(editor) {
-    setTimeout( () => {
-      console.log(this.editor)
-      console.log(editor)
-    }, 1000
-    )
   }
   ngOnChanges(changes: SimpleChanges) {
     const loading: SimpleChange = changes.loading;
