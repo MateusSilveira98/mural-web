@@ -16,6 +16,13 @@
   <h1 class="font-24" [ngStyle]="{color: styleConfig.primary.main}">Comentários para esta atividade</h1>
   <filter [style]="styleConfig" [filters]="commentsFilters" [isSubmit]="true"></filter>
   <div class="mt-4">
+    <skeletonloading [isLoading]="loading" [config]="skeletonLoadingConfig">
+    </skeletonloading>
+    <hr class="ml-5">
+    <div class="ml-5">
+      <skeletonloading [isLoading]="loading" [config]="skeletonLoadingConfig">
+      </skeletonloading>
+    </div>
     <ng-container *ngFor="let comment of comments">
       <commentcard [loading]="loading" [style]="styleConfig" [isMobile]="isMobile" [comment]="comment"></commentcard>
       <ng-container *ngIf="comment?.answers?.length > 0">

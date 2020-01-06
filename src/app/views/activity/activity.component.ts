@@ -6,6 +6,7 @@ import { FilterConfig, FilterOptions } from '../../_components/filter/filter.com
 import { Comments } from '../../_models/comments.model';
 import { Activity } from '../../_models/activity.model';
 import { Router } from '@angular/router';
+import { SkeletonLoadingConfig } from 'src/app/_components/skeletonloading/skeletonloading.component';
 @Component({
   selector: 'activity',
   templateUrl: './activity.component.html',
@@ -60,6 +61,20 @@ export class ActivityComponent extends AppComponent implements OnInit {
     )
   ];
   loading: boolean = true;
+  skeletonTemplate: string = `
+    <div class="background-masker image"></div>
+    <div class="background-masker title"></div>
+    <div class="background-masker subtitle"></div>
+    <div class="background-masker label"></div>
+    <div class="background-masker checkbox"></div>
+    <div class="background-masker text-1"></div>
+    <div class="background-masker text-2"></div>
+    <div class="background-masker text-3"></div>
+    <div class="background-masker text-4"></div>
+    <div class="background-masker footer-1"></div>
+    <div class="background-masker footer-2"></div>
+  `;
+  skeletonLoadingConfig: SkeletonLoadingConfig = new SkeletonLoadingConfig(true, this.skeletonTemplate);
   constructor(private router: Router) {
     super();
   }

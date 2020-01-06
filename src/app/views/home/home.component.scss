@@ -1,0 +1,74 @@
+.background-masker {
+  &.header {
+    top: 4em;
+    height: 5px;
+    width: 100%;
+  }
+  &.row-1,
+  &.row-2,
+  &.row-3 {
+    top: 5em;
+    height: 55px;
+    width: 100%;
+    border-radius: 4px;
+  }
+  &.label-1,
+  &.label-2,
+  &.label-3,
+  &.label-4 {
+    top: 2em;
+    height: 10px;
+    width: 350px;
+  }
+  &.label-2 {
+    left: 30em;
+    width: 120px;
+  }
+  &.label-3 {
+    left: 43em;
+    width: 150px;
+  }
+  &.label-4 {
+    left: 56em;
+    width: 150px;
+  }
+  &.row-2 {
+    top: 9.5em;
+  }
+  &.row-3 {
+    top: 14em;
+  }
+}
+::ng-deep .background-masker.card-1,
+::ng-deep .background-masker.card-2,
+::ng-deep .background-masker.card-3,
+::ng-deep .background-masker.card-4 {
+  top: 1em;
+  left: 2.5em;
+  height: 230px;
+  width: 240px;
+}
+::ng-deep .background-masker.card-2 {
+  left: 18.5em;
+}
+::ng-deep .background-masker.card-3 {
+  left: 34.5em;
+}
+::ng-deep .background-masker.card-4 {
+  left: 50.5em;
+}
+::ng-deep .background-masker.ball-1,
+::ng-deep .background-masker.ball-2,
+::ng-deep .background-masker.ball-3 {
+  left: 31em;
+  bottom: 1em;
+  width: 20px;
+  height: 20px;
+  border-radius: 100px;
+}
+::ng-deep .background-masker.ball-2 {
+  left: 33em;
+}
+::ng-deep .background-masker.ball-3 {
+  left: 35em;
+}

@@ -4,15 +4,17 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule, NgbDateParserFormatter, NgbDatepickerI18n } from '@ng-bootstrap/ng-bootstrap';
 import { CommonModule } from '@angular/common';
 
-
 import { GeneralTableComponent } from './generaltable/generaltable.component';
 import { FilterComponent } from './filter/filter.component';
 import { I18n, CustomDatepickerI18n } from '../_helpers/CustomDatepickerI18n';
 import { NgbDatePTParserFormatter } from '../_helpers/NgbDatePTParserFormatter';
+import { SkeletonLoadingComponent } from './skeletonloading/skeletonloading.component';
+
 @NgModule({
   declarations: [
     GeneralTableComponent,
-    FilterComponent
+    FilterComponent,
+    SkeletonLoadingComponent
   ],
   imports: [
     BrowserModule,
@@ -23,7 +25,8 @@ import { NgbDatePTParserFormatter } from '../_helpers/NgbDatePTParserFormatter';
   ],
   exports: [
     GeneralTableComponent,
-    FilterComponent
+    FilterComponent,
+    SkeletonLoadingComponent
   ],
   providers: [
     [I18n, { provide: NgbDatepickerI18n, useClass: CustomDatepickerI18n }],

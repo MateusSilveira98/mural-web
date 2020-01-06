@@ -1,0 +1,62 @@
+::ng-deep .background-masker.image {
+  width: 50px;
+  height: 50px;
+  top: 1em;
+  left: 2em;
+}
+::ng-deep .background-masker.title {
+  width: 370px;
+  height: 17px;
+  top: 1em;
+  left: 6em;
+}
+::ng-deep .background-masker.subtitle {
+  width: 60px;
+  height: 18px;
+  top: 2.5em;
+  left: 6em;
+}
+::ng-deep .background-masker.label {
+  width: 22px;
+  height: 12px;
+  right: 4em;
+  top: 1.3em;
+}
+::ng-deep .background-masker.checkbox {
+  width: 20px;
+  height: 20px;
+  top: 1em;
+  right: 2em;
+}
+::ng-deep .background-masker.text-1, ::ng-deep .background-masker.text-2, ::ng-deep .background-masker.text-3, ::ng-deep .background-masker.text-4 {
+  height: 15px;
+  left: 2em;
+  right: 2em;
+}
+::ng-deep .background-masker.text-1 {
+  top: 6em;
+}
+::ng-deep .background-masker.text-2 {
+  top: 7.5em;
+  width: 90%;
+}
+::ng-deep .background-masker.text-3 {
+  top: 9em;
+  width: 70%;
+}
+::ng-deep .background-masker.text-4 {
+  top: 10.5em;
+  width: 80%;
+}
+::ng-deep .background-masker.footer-1 {
+  bottom: 1em;
+  width: 195px;
+  height: 27px;
+  left: 2em;
+}
+::ng-deep .background-masker.footer-2 {
+  right: 2em;
+  bottom: 1em;
+  width: 523px;
+  height: 30px;
+}

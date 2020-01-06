@@ -8,12 +8,12 @@ import { GeneralTableConfig, GeneralTableProps } from '../../_components/general
 import { Router } from '@angular/router';
 import { AppComponent } from '../../app.component';
 import { Knowledge } from '../../_models/knowledge.model';
+import { SkeletonLoadingConfig } from 'src/app/_components/skeletonloading/skeletonloading.component';
 
 @Component({
   selector: 'home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  styleUrls: ['./home.component.scss']
 })
 export class HomeComponent extends AppComponent implements OnInit {
   knowledgePage1: any[] = [1, 2, 3, 4];
@@ -205,6 +205,18 @@ export class HomeComponent extends AppComponent implements OnInit {
   totalActivitiesPerPage: number = 2;
   commentsPage: number = 1;
   totalCommentsPerPage: number = 2;
+  skeletonLoadingConfig: SkeletonLoadingConfig = new SkeletonLoadingConfig(false);
+  carouselSkeletonTemplate: string = `
+    <div class="background-masker card-1"></div>
+    <div class="background-masker card-2"></div>
+    <div class="background-masker card-3"></div>
+    <div class="background-masker card-4"></div>
+    <div class="background-masker ball-1"></div>
+    <div class="background-masker ball-2"></div>
+    <div class="background-masker ball-3"></div>
+  `;
+  carouselSkeletonLoadingConfig: SkeletonLoadingConfig = new SkeletonLoadingConfig(true, this.carouselSkeletonTemplate);
+
   constructor(private router: Router) { super(); }
   randomDate(start, end) {
     return moment(new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()))).fromNow();
@@ -217,7 +229,7 @@ export class HomeComponent extends AppComponent implements OnInit {
     this.loadingCarousel = true;
     setTimeout(() => {
       this.loadingCarousel = false;
-    }, 2000);
+    }, 5000);
   }
   getKnowledgesByPage(page) {
     this.knowledgePage = page;

@@ -1,0 +1,9 @@
+<div class="loading-wrapper" *ngIf="isLoading">
+  <div class="loading-item" [ngStyle]="{minHeight: config.loadingItemHeight || '300px'}">
+    <div class="animated-background" [ngStyle]="{height: config.animatedBackgroundHeight || '300px'}"
+      *ngIf="config.hasBackground" [innerHtml]="config.template">
+    </div>
+    <ng-content *ngIf="!config.hasBackground">
+    </ng-content>
+  </div>
+</div>

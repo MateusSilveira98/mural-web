@@ -7,6 +7,7 @@ import { CKEditorModule } from 'ckeditor4-angular';
 
 import { CardCarouselComponent } from './cardcarousel/cardcarousel.component';
 import { CommentCardComponent } from './commentcard/commentcard.component';
+import { ComponentsModule } from '../_components/components.module';
 
 @NgModule({
   declarations: [

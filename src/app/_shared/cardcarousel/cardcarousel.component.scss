@@ -23,40 +23,6 @@
   }
 }
 
-.background-masker.card-1,
-.background-masker.card-2,
-.background-masker.card-3,
-.background-masker.card-4 {
-  top: 1em;
-  left: 2.5em;
-  height: 230px;
-  width: 240px;
-}
-.background-masker.card-2 {
-  left: 18.5em;
-}
-.background-masker.card-3 {
-  left: 34.5em;
-}
-.background-masker.card-4 {
-  left: 50.5em;
-}
-.background-masker.ball-1,
-.background-masker.ball-2,
-.background-masker.ball-3 {
-  left: 31em;
-  bottom: 1em;
-  width: 20px;
-  height: 20px;
-  border-radius: 100px;
-}
-.background-masker.ball-2 {
-  left: 33em;
-}
-.background-masker.ball-3 {
-  left: 35em;
-}
-
 @media (max-width: 1024px) {
   .arrow {
     &::before {

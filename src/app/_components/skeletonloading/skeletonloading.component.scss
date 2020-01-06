@@ -1,31 +1,8 @@
-// @import "~animate.css/animate.min.css";
-@import "./assets/bootstrap/css/bootstrap.min.css";
-@import "./assets/styles/index.scss";
-
-* {
-  margin: 0;
-  padding: 0;
-  list-style-type: none;
-  text-decoration: none;
-  font-family: lato-regular;
-  &:focus {
-    outline: none;
-  }
-}
-::ng-deep {
-  *:focus {
-    outline: none;
-  }
-}
-.cursor-pointer {
-  cursor: pointer;
-}
-
 .loading-item {
   border-color: #e5e6e9 #dfe0e4 #d0d1d5;
   border-radius: 3px;
   padding: 12px;
-
+  position: relative;
   margin: 0 auto;
   max-width: 100%;
 }
@@ -53,21 +30,4 @@
   animation-name: placeHolderShimmer;
   animation-timing-function: linear;
   background: linear-gradient(to right, #cacaca 8%, #e1e0e0 18%, #cecece 33%);
-}
-
-// MEDIA QUERY
-.is-desktop {
-  display: block;
-}
-.is-mobile {
-  display: none;
-}
-
-@media (max-width: 800px) {
-  .is-desktop {
-    display: none;
-  }
-  .is-mobile {
-    display: block;
-  }
 }
