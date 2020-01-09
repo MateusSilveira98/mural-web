@@ -227,9 +227,9 @@ export class HomeComponent extends AppComponent implements OnInit {
     this.getCommentsByPage(this.commentsPage, this.totalCommentsPerPage);
     this.getActivityByPage(this.activityPage, this.totalActivitiesPerPage);
     this.loadingCarousel = true;
-    setTimeout(() => {
-      this.loadingCarousel = false;
-    }, 5000);
+    // setTimeout(() => {
+    //   this.loadingCarousel = false;
+    // }, 5000);
   }
   getKnowledgesByPage(page) {
     this.knowledgePage = page;
